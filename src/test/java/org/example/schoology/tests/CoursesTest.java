@@ -1,19 +1,24 @@
 package org.example.schoology.tests;
 
 import org.example.schoology.pages.Courses;
+import org.example.schoology.pages.CreateCourse;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
 import org.junit.Test;
 
 public class CoursesTest {
+	public CoursesTest() {
+	}
 
 	@Test
 	public void editCourse() {
 		Login login = new Login();
-		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
+		Home home = login.loginAs("mixmeil@gmail.com", "Control123");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
+		CreateCourse createCourse = courses.clickCreateCourse();
+		createCourse.createCourse("MT-TestCourse001", "MT-SectionTest", "Mathematics", "Undergraduate");
 
 //		driver.findElement(By.cssSelector("a.create-course-btn")).click();
 //
