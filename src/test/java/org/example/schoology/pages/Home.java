@@ -22,4 +22,9 @@ public class Home {
 		return new SubMenu(driver);
 	}
 
+	public Home cancelVerificationAccount() {
+		driver.findElement(By.cssSelector("input[value='Cancel']")).click();
+		return this;
+	}
+
 }
