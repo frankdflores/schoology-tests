@@ -1,40 +1,41 @@
 package org.example.schoology.tests;
 
-import org.example.schoology.pages.Courses;
+import org.example.schoology.pages.courses.Courses;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
+import org.example.schoology.pages.courses.CreateCourseModal;
+import org.junit.After;
 import org.junit.Test;
 
 public class CoursesTest {
 
+	Login login;
+
 	@Test
 	public void editCourse() {
-		Login login = new Login();
+
+		// Test Data
+		String courseName = "Test Course";
+		String section = "Section";
+		String subjectArea = "Mathematics";
+		String level = "Undergraduate";
+
+		login = new Login();
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
+		CreateCourseModal createCourseModal =  courses.clickCreateCourseButton();
+		createCourseModal.createCourse(courseName, section, subjectArea, level);
+		subMenu = home.clickMenu("Courses");
+		courses = subMenu.clickMyCoursesLink();
+		courses.expandActionsMenuForCourse(courseName);
+	}
 
-//		driver.findElement(By.cssSelector("a.create-course-btn")).click();
-//
-//		String courseName = "Test Course";
-//		driver.findElement(By.cssSelector("#edit-course-name")).sendKeys(courseName);
-//		WebElement sectionField = driver.findElement(By.cssSelector("#edit-section-name-1"));
-//		sectionField.clear();
-//		sectionField.sendKeys("Section");
-//		Select subjectArea = new Select(driver.findElement(By.cssSelector("#edit-subject-area")));
-//		subjectArea.selectByVisibleText("Mathematics");
-//		Select level = new Select(driver.findElement(By.cssSelector("#edit-grade-level-range-start")));
-//		level.selectByVisibleText("Undergraduate");
-//
-//		driver.findElement(By.cssSelector("#edit-submit")).click();
-//
-//		driver.findElement(By.xpath("//span[text()='Courses']/parent::button")).click();
-//
-//		driver.findElement(By.cssSelector("a[href='/courses']")).click();
-//
-//		String courseActions = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
-//		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
+	// ToDo: This after method is temporal, remove it when a driver manager is implemented
+	@After
+	public void quitDriver() {
+		login.quit();
 	}
 
 }

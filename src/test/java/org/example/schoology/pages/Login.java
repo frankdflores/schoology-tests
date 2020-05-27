@@ -37,4 +37,8 @@ public class Login {
 		return new Home(driver);
 	}
 
+	// ToDo: This method is temporal, remove it when a driver manager is implemented
+	public void quit() {
+		driver.quit();
+	}
 }

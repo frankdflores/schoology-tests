@@ -1,5 +1,6 @@
 package org.example.schoology.pages;
 
+import org.example.schoology.pages.courses.Courses;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
