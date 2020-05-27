@@ -11,8 +11,14 @@ public class Courses {
 		this.driver = driver;
 	}
 
-	public PopupCreateCourse clickCreateCourse(){
+	public PopupCreateCourse clickCreateCourseButton(){
 		driver.findElement(By.cssSelector("a.create-course-btn")).click();
 		return new PopupCreateCourse(driver);
+	}
+
+	public void clickActionCourse(String courseName){
+		String courseActions = "//span[text()='%s']/ancestor::li//div[@href='#']";
+		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
+		driver.close();
 	}
 }

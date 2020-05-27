@@ -16,15 +16,12 @@ public class CoursesTest {
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
-		PopupCreateCourse popupCreateCourse = courses.clickCreateCourse();
+		PopupCreateCourse popupCreateCourse = courses.clickCreateCourseButton();
 		Materials materials = popupCreateCourse.fillInTheFieldsAndCreate("Test Course",
 				"Section", "Mathematics", "Undergraduate");
 		home.clickMenu("Courses");
 		subMenu.clickMyCoursesLink();
-
-
-//		String courseActions = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
-//		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
+		courses.clickActionCourse("Test Course");
 	}
 
 }
