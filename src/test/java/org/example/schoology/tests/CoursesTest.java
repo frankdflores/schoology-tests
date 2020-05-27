@@ -1,5 +1,5 @@
 package org.example.schoology.tests;
-
+import org.example.schoology.pages.CourseForm;
 import org.example.schoology.pages.Courses;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
@@ -14,6 +14,11 @@ public class CoursesTest {
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
+		CourseForm createCurse = courses.createCourseAction();
+		home = createCurse.fillOutCurseForm("Test Course", "Section test", "Mathematics", "Undergraduate");
+		subMenu = home.clickMenu("Courses");
+		courses = subMenu.clickMyCoursesLink();
+		createCurse = courses.editCourseAction("Test Course");
 
 //		driver.findElement(By.cssSelector("a.create-course-btn")).click();
 //
