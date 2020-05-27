@@ -14,7 +14,7 @@ public class CoursesTest {
 
 		CreateModal createModal = courses.openModal();
 		createModal.createNewCourse("Test Modal");
-
+		courses.endProcess();
 	}
 
 }

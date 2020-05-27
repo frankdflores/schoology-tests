@@ -22,4 +22,8 @@ public class Courses {
 		return new CreateModal(driver);
 	}
 
+	public void endProcess() {
+		driver.quit();
+	}
+
 }
