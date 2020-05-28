@@ -1,5 +1,6 @@
 package org.example.schoology.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,20 +11,16 @@ public class Courses {
 	private WebDriver driver;
 
 	@FindBy(css = "a.create-course-btn")
-	WebElement createCourse;
+	private WebElement createCourseButton;
 
 	public Courses(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
-	public CreateModal openModal(){
-		createCourse.click();
-		return new CreateModal(driver);
-	}
-
-	public void endProcess() {
-		driver.quit();
+	public CreateCoursePopup clickCreateCourseButton() {
+		createCourseButton.click();
+		return new CreateCoursePopup(driver);
 	}
 
 }
