@@ -16,4 +16,8 @@ public class SubMenu {
 		return new Courses(driver);
 	}
 
+	public Groups clickMyGroupsLink() {
+		driver.findElement(By.cssSelector("a[href='/groups']")).click();
+		return new Groups(driver);
+	}
 }
