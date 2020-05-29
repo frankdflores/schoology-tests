@@ -30,11 +30,11 @@ public class Login {
 		PageFactory.initElements(driver, this);
 	}
 
-	public Home loginAs(String username, String password) {
+	public PopupVerification loginAs(String username, String password) {
 		usernameTextField.sendKeys(username);
 		passwordTextField.sendKeys(password);
 		loginButton.click();
-		return new Home(driver);
+		return new PopupVerification(driver);
 	}
 
 }
