@@ -1,15 +1,17 @@
 package org.example.schoology.tests;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.example.schoology.entities.Course;
 import org.example.schoology.pages.Courses;
-import org.example.schoology.pages.CreateCourse;
+import org.example.schoology.pages.CreateCoursePopup;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
 import org.junit.Test;
 
 public class CoursesTest {
-	public CoursesTest() {
-	}
 
 	@Test
 	public void editCourse() {
@@ -17,10 +19,19 @@ public class CoursesTest {
 		Home home = login.loginAs("mixmeil@gmail.com", "Control123");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
-		CreateCourse createCourse = courses.clickCreateCourse();
-		createCourse.createCourse("MT-TestCourse001", "MT-SectionTest", "Mathematics", "Undergraduate");
+		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 
-//		driver.findElement(By.cssSelector("a.create-course-btn")).click();
+		//Course course = new Course();
+		//String courseName = "MT - Test Course";
+
+		Map<String, String> courseMap = new HashMap<>();
+		courseMap.put("name","MT - Test Course");
+		courseMap.put("section", "MT - Section");
+		courseMap.put("area", "Mathematics");
+		courseMap.put("level", "Undergraduate");
+		createCoursePopup.create(courseMap);
+
+
 //
 //		String courseName = "Test Course";
 //		driver.findElement(By.cssSelector("#edit-course-name")).sendKeys(courseName);
