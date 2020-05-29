@@ -20,9 +20,9 @@ public class Courses {
 		PageFactory.initElements(driver, this);
 	}
 
-	public CreateCourseModal clickCreateCourseButton() {
+	public CreateCoursePopup clickCreateCourseButton() {
 		createCourseButton.click();
-		return new CreateCourseModal(driver);
+		return new CreateCoursePopup(driver);
 	}
 
 	public void expandActionsMenuForCourse(final String courseName) {

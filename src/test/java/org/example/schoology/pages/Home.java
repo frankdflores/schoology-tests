@@ -1,5 +1,7 @@
 package org.example.schoology.pages;
 
+import org.example.schoology.pages.courses.CoursesSubMenu;
+import org.example.schoology.pages.groups.GroupsSubMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,9 +19,17 @@ public class Home {
 	 * @param menuName
 	 * @return
 	 */
-	public SubMenu clickMenu(String menuName) {
+	public void clickMenu(String menuName) {
 		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
-		return new SubMenu(driver);
 	}
 
+	public CoursesSubMenu clickCoursesMenu() {
+		clickMenu("Courses");
+		return new CoursesSubMenu(driver);
+	}
+
+	public GroupsSubMenu clickGroupsMenu() {
+		clickMenu("Groups");
+		return new GroupsSubMenu(driver);
+	}
 }
