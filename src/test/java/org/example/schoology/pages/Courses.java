@@ -18,9 +18,9 @@ public class Courses {
 		PageFactory.initElements(driver, this);
 	}
 
-	public CreateCourse openCourse(){
+	public CreateCoursePopup clickCreateCourseButton(){
 
 		createCourseButton.click();
-		return new CreateCourse(driver);
+		return new CreateCoursePopup(driver);
 	}
 }
