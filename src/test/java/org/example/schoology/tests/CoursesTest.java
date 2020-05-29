@@ -3,6 +3,9 @@ package org.example.schoology.tests;
 import org.example.schoology.pages.*;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CoursesTest {
 
 	@Test
@@ -11,8 +14,16 @@ public class CoursesTest {
 		Home home = login.loginAs("LYNX_LEXX@hotmail.com", "TheTop86!");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
-		CreateCourseModal course1 = courses.clickCreateCourse();
-		course1.createCourse("Course one", "Section one", "Mathematics", "Undergraduate" );
+		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
+		//Course course = new Course();
+		String courseName = "Test Course01";
+		Map<String, String> courseMap = new HashMap<>();
+		courseMap.put("name", courseName);
+		courseMap.put("section", "Section07");
+		courseMap.put("area", "Mathematics");
+		courseMap.put("level", "Undergraduate");
+		createCoursePopup.create(courseMap);
+
 		home.clickMenu("Courses");
 		subMenu.clickMyCoursesLink();
 

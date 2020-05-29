@@ -10,16 +10,16 @@ public class Courses {
 	private WebDriver driver;
 
 	@FindBy(css = "a.create-course-btn" )
-	private WebElement createCourse;
+	private WebElement createCourseButton;
 
 	public Courses(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
-	public CreateCourseModal clickCreateCourse(){
-		createCourse.click();
-		return new CreateCourseModal(driver);
+	public CreateCoursePopup clickCreateCourseButton(){
+		createCourseButton.click();
+		return new CreateCoursePopup(driver);
 	}
 
 
