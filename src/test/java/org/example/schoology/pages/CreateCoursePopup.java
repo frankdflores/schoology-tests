@@ -71,22 +71,4 @@ public class CreateCoursePopup {
 		levelField.selectByVisibleText(level);
 	}
 
-//	public Materials create(Course course){
-//		courseNameTextField.sendKeys(course.getCourseName());
-//		WebElement sectionField = sectionNameTextField;
-//		sectionField.clear();
-//		sectionField.sendKeys(course.getSection());
-//
-//		Select subjectArea = new Select(subjectAreaDropDown);
-//		subjectArea.selectByVisibleText(course.getSubject());
-//
-//		Select levelField = new Select(levelDropDown);
-//		levelField.selectByVisibleText(course.getLevel());
-//
-//		submitButton.click();
-//
-//		return new Materials(driver);
-//	}
-
-
 }
