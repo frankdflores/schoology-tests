@@ -4,11 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.example.schoology.entities.Course;
-import org.example.schoology.pages.Courses;
-import org.example.schoology.pages.CreateCoursePopup;
-import org.example.schoology.pages.Home;
-import org.example.schoology.pages.Login;
-import org.example.schoology.pages.SubMenu;
+import org.example.schoology.pages.*;
 import org.junit.Test;
 
 public class CoursesTest {
@@ -51,4 +47,21 @@ public class CoursesTest {
 //		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
 	}
 
+	@Test
+	public void createGroup() {
+		Login login = new Login();
+		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
+		SubMenu subMenu = home.clickMenu("Groups");
+		Groups groups = subMenu.clickMyGroupsLink();
+		CreateGroupPopup createGroupPopup = groups.clickCreateGroupButton();
+		String groupName = "Test Group";
+
+		Map<String, String> groupMap = new HashMap<>();
+		groupMap.put("name", groupName);
+		groupMap.put("description", "Test Description");
+		groupMap.put("privacy", "No One");
+		groupMap.put("access", "Open");
+		groupMap.put("category", "General");
+		createGroupPopup.create(groupMap);
+	}
 }
