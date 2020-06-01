@@ -1,10 +1,13 @@
 package org.example.schoology.tests;
-import org.example.schoology.pages.CourseForm;
+import org.example.schoology.pages.CreateCoursePopup;
 import org.example.schoology.pages.Courses;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CoursesTest {
 
@@ -14,11 +17,20 @@ public class CoursesTest {
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
-		CourseForm createCurse = courses.createCourseAction();
-		home = createCurse.fillOutCurseForm("Test Course", "Section test", "Mathematics", "Undergraduate");
+		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
+		//Course course = new Course();
+		String courseName = "Test Course";
+
+		Map<String, String> courseMap = new HashMap<>();
+		courseMap.put("name", courseName);
+		courseMap.put("section", "Section");
+		courseMap.put("area", "Mathematics");
+		courseMap.put("level", "Undergraduate");
+		home = createCoursePopup.create(courseMap);
+
 		subMenu = home.clickMenu("Courses");
 		courses = subMenu.clickMyCoursesLink();
-		createCurse = courses.editCourseAction("Test Course");
+		courses.editCourseAction(courseName);
 
 //		driver.findElement(By.cssSelector("a.create-course-btn")).click();
 //

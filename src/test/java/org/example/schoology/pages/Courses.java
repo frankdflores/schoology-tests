@@ -22,15 +22,15 @@ public class Courses {
 
 	}
 
-	public CourseForm createCourseAction(){
+	public CreateCoursePopup clickCreateCourseButton(){
 		button_create_course.click();
-		return new CourseForm(driver);
+		return new CreateCoursePopup(driver);
 	}
 
-	public CourseForm editCourseAction(String courseName){
+	public CreateCoursePopup editCourseAction(String courseName){
 		String courseActions = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
 		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
-		return new CourseForm(driver);
+		return new CreateCoursePopup(driver);
 	}
 
 }

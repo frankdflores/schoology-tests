@@ -13,11 +13,7 @@ public class Home {
 
 	private WebDriver driver;
 
-    //@FindBy(xpath = String.format("//span[text()='%s']/parent::button", menu_selected_name) )
-	private WebElement menu_selected;
-
-
-	public Home(WebDriver driver) {
+    	public Home(WebDriver driver) {
 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -30,14 +26,8 @@ public class Home {
 	 * @return
 	 */
 	public SubMenu clickMenu(String menuName) {
-		menu_selected =setMenu_selected_name(menuName);
-		menu_selected.click();
-		//driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
-
+		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
 		return new SubMenu(driver);
 	}
 
-	private WebElement  setMenu_selected_name(String menuName) {
-		return driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName)));
-	}
 }
