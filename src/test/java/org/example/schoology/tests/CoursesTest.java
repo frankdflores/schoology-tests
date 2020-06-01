@@ -16,7 +16,7 @@ public class CoursesTest {
 		Login login = new Login();
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
 		SubMenu subMenu = home.clickMenu("Courses");
-		Courses courses = subMenu.clickMyCoursesLink();
+		Courses courses = subMenu.clickCourseLink();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 		//Course course = new Course();
 		String courseName = "Test Course";
@@ -29,7 +29,7 @@ public class CoursesTest {
 		home = createCoursePopup.create(courseMap);
 
 		subMenu = home.clickMenu("Courses");
-		courses = subMenu.clickMyCoursesLink();
+		courses = subMenu.clickCourseLink();
 		courses.editCourseAction(courseName);
 
 //		driver.findElement(By.cssSelector("a.create-course-btn")).click();

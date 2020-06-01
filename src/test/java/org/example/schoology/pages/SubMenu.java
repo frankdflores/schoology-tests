@@ -13,7 +13,10 @@ public class SubMenu {
 
 	//@FindBy(xpath = "//a[contains(@href,'courses')]")
 	@FindBy(css = "a[href='/courses']")
-	private WebElement sub_menu_selected;
+	private WebElement sub_menu_course;
+
+	@FindBy(css = "a[href='/groups']")
+	private WebElement sub_menu_group;
 
 
 	public SubMenu(WebDriver driver) {
@@ -21,10 +24,16 @@ public class SubMenu {
 		PageFactory.initElements(driver, this);
 	}
 
-	public Courses clickMyCoursesLink() {
-		sub_menu_selected.click();
-		//driver.findElement(By.cssSelector("a[href='/courses']")).click();
+	public Courses clickCourseLink() {
+		sub_menu_course.click();
+		//driver.findElement(By.cssSelector(String.format("a[href='/%s']",name_menu))).click();
 		return new Courses(driver);
+	}
+
+	public Groups clickGroupLink() {
+		sub_menu_group.click();
+		//driver.findElement(By.cssSelector(String.format("a[href='/%s']",name_menu))).click();
+		return new Groups(driver);
 	}
 
 }
