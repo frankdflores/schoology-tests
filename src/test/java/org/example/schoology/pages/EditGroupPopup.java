@@ -12,7 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateGroupPopup {
+public class EditGroupPopup {
+
     private WebDriver driver;
 
     @FindBy(css = "#edit-name")
@@ -20,6 +21,9 @@ public class CreateGroupPopup {
 
     @FindBy(css = "#edit-description")
     private WebElement descriptionTextField;
+
+    @FindBy(css = "#edit-group-code")
+    private WebElement groupCodeTextField;
 
     @FindBy(css = "#edit-privacy-level" )
     private WebElement privacyDropDown;
@@ -35,36 +39,44 @@ public class CreateGroupPopup {
 
     private WebDriverWait wait;
 
-    public CreateGroupPopup(WebDriver driver){
+    public EditGroupPopup(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
         PageFactory.initElements(driver, this);
     }
 
-    public Group create(Map<String, String> groupMap){
+    public Groups edit(Map<String, String> editGroupMap){
         Map<String, Step> stepsMap = new HashMap<>();
-        stepsMap.put("name", () -> setName(groupMap.get("name")));
-        stepsMap.put("description", () ->setDescription(groupMap.get("description")));
-        stepsMap.put("privacy", () ->selectPrivacy(groupMap.get("privacy")));
-        stepsMap.put("access", () ->selectAccess(groupMap.get("access")));
-        stepsMap.put("category", () ->selectCategory(groupMap.get("category")));
+        stepsMap.put("newname", () -> setName(editGroupMap.get("newname")));
+        stepsMap.put("newdescription", () ->setDescription(editGroupMap.get("newdescription")));
+        stepsMap.put("newgroupcode", () ->setGroupCode(editGroupMap.get("newgroupcode")));
+        stepsMap.put("newprivacy", () ->selectPrivacy(editGroupMap.get("newprivacy")));
+        stepsMap.put("newaccess", () ->selectAccess(editGroupMap.get("newaccess")));
+        stepsMap.put("newcategory", () ->selectCategory(editGroupMap.get("newcategory")));
 
-        for(String keyField: groupMap.keySet()){
+
+        for(String keyField: editGroupMap.keySet()){
             stepsMap.get(keyField).execute();
         }
 
         submitButton.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#feed-empty-message")));
-        return new Group(driver);
+        return new Groups(driver);
     }
 
     public void setName(String name){
-        groupNameTextField.sendKeys(name);
-
+        WebElement groupField = groupNameTextField;
+        groupField.clear();
+        groupField.sendKeys(name);
     }
 
     public void setDescription(String description){
-        descriptionTextField.sendKeys(description);
+        WebElement descriptionField = descriptionTextField;
+        descriptionField.clear();
+        descriptionField.sendKeys(description);
+    }
+
+    public void setGroupCode(String groupcode){
+        groupCodeTextField.sendKeys(groupcode);
     }
 
     public void selectPrivacy(String privacy){
@@ -84,3 +96,4 @@ public class CreateGroupPopup {
 
 
 }
+
