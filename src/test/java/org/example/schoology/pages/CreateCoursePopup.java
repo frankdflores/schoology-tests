@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.example.schoology.entities.Course;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateCoursePopup {
 
@@ -30,12 +33,15 @@ public class CreateCoursePopup {
 
 	private WebDriver driver;
 
+	private WebDriverWait wait;
+
 	public CreateCoursePopup(WebDriver driver) {
 		this.driver = driver;
+		this.wait = new WebDriverWait(driver, 30);
 		PageFactory.initElements(driver, this);
 	}
 
-	public void create(Map<String, String> courseMap) {
+	public CoursePage create(Map<String, String> courseMap) {
 		Map<String, Step> stepsMap = new HashMap<>();
 		stepsMap.put("name", () -> setName(courseMap.get("name")));
 		stepsMap.put("section", () -> setSection(courseMap.get("section")));
@@ -47,6 +53,10 @@ public class CreateCoursePopup {
 		}
 
 		submitButton.click();
+
+		//TODO
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#course-profile-materials")));
+		return new CoursePage(driver);
 	}
 
 	public void setName(String name) {

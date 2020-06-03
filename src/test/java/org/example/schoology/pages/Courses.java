@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Courses {
 
+	public static final String COURSE_ACTIONS_BUTTON = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
+
 	private WebDriver driver;
 
 	@FindBy(css = "a.create-course-btn")
@@ -21,6 +23,10 @@ public class Courses {
 	public CreateCoursePopup clickCreateCourseButton() {
 		createCourseButton.click();
 		return new CreateCoursePopup(driver);
+	}
+
+	public void clickEditCourse(String courseName) {
+		driver.findElement(By.xpath(String.format(COURSE_ACTIONS_BUTTON, courseName))).click();
 	}
 
 }
