@@ -1,10 +1,13 @@
 package org.example.schoology.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +16,8 @@ import java.util.Map;
 public class PopupCreateGroup {
 
     private WebDriver driver;
+
+    private WebDriverWait wait;
 
     @FindBy(css = "#edit-name")
     private WebElement nameField;
@@ -34,6 +39,7 @@ public class PopupCreateGroup {
 
     public PopupCreateGroup(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 20);
         PageFactory.initElements(driver, this);
     }
 
@@ -51,6 +57,8 @@ public class PopupCreateGroup {
         }
 
         createButton.click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".form-submit")));
 
         return new Group(driver);
     }

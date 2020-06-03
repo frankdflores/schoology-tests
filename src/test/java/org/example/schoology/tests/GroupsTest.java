@@ -14,37 +14,30 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CoursesTest {
+public class GroupsTest {
 
-	@Test
-	public void editCourse() {
-		Login login = new Login();
+    public static final String PREFIX_AT = "AT_";
+
+    @Test
+    public void editGroup() {
+        Login login = new Login();
         Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
-
-		// Create course
-		SubMenu subMenu = home.clickMenu("Courses");
-		Courses courses = subMenu.clickMyCoursesLink();
-		PopupCreateCourse popupCreateCourse = courses.clickCreateCourseButton();
-
-		// although it is ok it should not be implemented like this; see create groups
-		Materials materials = popupCreateCourse.fillInTheFieldsAndCreate("Test Course",
-				"Section", "Mathematics", "Undergraduate");
-
-		// Create groups
-		home.clickMenu("Groups");
+        SubMenu subMenu = home.clickMenu("Groups");
         Groups groups = subMenu.clickMyGroupsLink();
         PopupCreateGroup popupCreateGroup = groups.clickCreateGroupButton();
+        String groupName = PREFIX_AT + "Test Group" + System.currentTimeMillis();
+
         Map<String, String> groupMap = new HashMap<>();
-        groupMap.put("name", "Group-1");
-//        groupMap.put("description", "Description");
+        groupMap.put("name", groupName);
+        groupMap.put("description", "Description");
         groupMap.put("privacy", "School");
         groupMap.put("access", "Invite Only");
         groupMap.put("category", "Musical Groups");
         Group group = popupCreateGroup.fillInTheFieldsAndCreate(groupMap);
 
-		home.clickMenu("Courses");
-		subMenu.clickMyCoursesLink();
-		courses.clickActionCourse("Test Course");
-	}
+        subMenu = home.clickMenu("Groups");
+        groups = subMenu.clickMyGroupsLink();
+        popupCreateGroup = groups.clickEditGroup(groupName);
 
+    }
 }
