@@ -1,6 +1,14 @@
 package org.example.schoology.tests;
 
-import org.example.schoology.pages.*;
+
+import org.example.schoology.pages.Groups;
+import org.example.schoology.pages.Home;
+import org.example.schoology.pages.Login;
+import org.example.schoology.pages.SubMenu;
+import org.example.schoology.pages.CreateGroupPopup;
+import org.example.schoology.pages.EditGroupPopup;
+import org.example.schoology.pages.GroupPage;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -44,7 +52,15 @@ public class GroupsTest {
         //When
         subMenu = home.clickMenu("Groups");
         groups = subMenu.clickMyGroupsLink();
-        groups.clickEditGroup(groupName);
+        EditGroupPopup editGroupPopup = groups.clickEditGroup(groupName);
+        groupMap = new HashMap<>();
+        groupMap.put("description", "MT - This is an updated description");
+        groupMap.put("category", "Sports Groups");
+        groups = editGroupPopup.edit(groupMap);
+
+        //Then
+        Assert.assertEquals(groupName + " has been saved.", groups.getMessage());
+
 
 
 
