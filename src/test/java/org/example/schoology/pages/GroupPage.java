@@ -8,22 +8,23 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CoursePage {
+public class GroupPage {
 
-    private final By cssCourseProfile = By.cssSelector("#course-profile-materials");
+    private final By cssGroupProfile = By.cssSelector("#edit-submit");
 
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(css = "#course-profile-materials")
-    private WebElement courseProfileMaterials;
+    @FindBy(css = "#edit-submit")
+    private WebElement groupPost;
 
-    public CoursePage(WebDriver driver){
+    public GroupPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
         PageFactory.initElements(driver, this);
-        wait.until(ExpectedConditions.visibilityOf(courseProfileMaterials));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(cssCourseProfile));
+        wait.until(ExpectedConditions.visibilityOf(groupPost));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(cssGroupProfile));
     }
-
 }
+
+

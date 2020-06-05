@@ -15,6 +15,9 @@ public class Groups {
     @FindBy(css = "a.create-group" )
     private WebElement createGroupButton;
 
+    @FindBy(css = ".messages .message-text")
+    private WebElement messages;
+
     public Groups(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -25,12 +28,15 @@ public class Groups {
         return new CreateGroupPopup(driver);
     }
 
-    public void clickEditGroup(String groupName) {
+    public EditGroupPopup clickEditGroup(String groupName) {
         driver.findElement(By.xpath(String.format(GROUP_ACTIONS_BUTTON, groupName))).click();
-    }
-
-    public EditGroupPopup clickActionEditGroup(String groupName){
-        driver.findElement(By.xpath(String.format(GROUP_ACTION_EDIT_GROUP_BUTTON, groupName))).click();
+        WebElement actionEdit = driver.findElement(By.xpath(String.format(GROUP_ACTION_EDIT_GROUP_BUTTON, groupName)));
+        actionEdit.click();
         return new EditGroupPopup(driver);
     }
+
+    public String getMessage(){
+        return messages.getText();
+    }
+
 }

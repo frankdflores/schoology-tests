@@ -1,6 +1,7 @@
 package org.example.schoology.tests;
 
 import org.example.schoology.pages.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -32,8 +33,20 @@ public class CoursesTest {
 		//When
 		subMenu = home.clickMenu("Courses");
 		courses = subMenu.clickMyCoursesLink();
-		courses.clickEditCourse(courseName);
+		EditCoursePopup editCoursePopup = courses.clickEditCourse(courseName);
+		String courseNameEdited = "EditedName";
 
+		courseMap = new HashMap<>();
+		courseMap.put("name", courseName);
+		courseMap.put("section", "Section010edited");
+		courseMap.put("area", "Mathematics");
+		courseMap.put("level", "Undergraduate");
+		courses = editCoursePopup.edit(courseMap);
+
+		//then
+		Assert.assertEquals("The section has been updated.", courses.getMessage());
+
+		Assert.assertEquals("Section010edited", courses.getSectionByName(courseName));
 
 
 		//home.clickMenu("Courses");

@@ -42,21 +42,20 @@ public class Login {
 		usernameTextField.sendKeys(username);
 		passwordTextField.sendKeys(password);
 		loginButton.click();
-		verifyYourAccount();
+		//verifyYourAccount();
 		return new Home(driver);
 	}
 
-	public void verifyYourAccount(){
-		try{
-			//Changing timeout
-			driver.manage().timeouts().implicitlyWait(MIN_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
-			cancelVerifyYourAccountButton.click();
-		}catch (NoSuchElementException e){
-			//Nothin
-		}finally {
-			//Restore timeout
-			driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
-		}
-	}
-
+//	public void verifyYourAccount(){
+//		try{
+//			//Changing timeout
+//			driver.manage().timeouts().implicitlyWait(MIN_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+//			cancelVerifyYourAccountButton.click();
+//		}catch (NoSuchElementException e){
+//			//Nothin
+//		}finally {
+//			//Restore timeout
+//			driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+//		}
+//	}
 }

@@ -1,6 +1,7 @@
 package org.example.schoology.tests;
 
 import org.example.schoology.pages.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -28,24 +29,25 @@ public class GroupsTest {
 		groupMap.put("privacy", "Group");
 		groupMap.put("access", "Open");
 		groupMap.put("category", "Musical Groups");
-		Group group = createGroupPopup.create(groupMap);
+		GroupPage groupPage = createGroupPopup.create(groupMap);
 
 
         //When
         subMenu = home.clickMenu("Groups");
         groups = subMenu.clickMyGroupsLink();
-        groups.clickEditGroup(groupName);
-        EditGroupPopup editGroupPopup = groups.clickActionEditGroup(groupName);
-        String editGroupName = "Edited";
-        Map<String, String> editGroupMap = new HashMap<>();
-        editGroupMap.put("newname", editGroupName);
-        editGroupMap.put("newdescription", "Description08edit");
-        editGroupMap.put("newgroupcode", "testcode01");
-        editGroupMap.put("newprivacy", "No One");
-        editGroupMap.put("newaccess", "Allow Requests");
-        editGroupMap.put("newcategory", "Faculty Groups");
-        Groups groupEdited = editGroupPopup.edit(editGroupMap);
+        EditGroupPopup editGroupPopup = groups.clickEditGroup(groupName);
+        groupMap = new HashMap<>();
+        groupMap.put("name", groupName);
+        groupMap.put("description", "Descriptiond");
+        groupMap.put("code", "testcode02Edit");
+        groupMap.put("privacy", "No One");
+        groupMap.put("access", "Allow Requests");
+        groupMap.put("category", "Faculty Groups");
+        groups = editGroupPopup.edit(groupMap);
 
+
+        //then
+        Assert.assertEquals(groupName + " has been saved.", groups.getMessage());
 
         //home.clickMenu("Groups");
         //subMenu.clickMyGroupsLink();
