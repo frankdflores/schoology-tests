@@ -22,4 +22,10 @@ public class Home {
 		return new SubMenu(driver);
 	}
 
+	public Resources clickResourcesMenuOption(){
+		driver.findElement(By.xpath("//header[@class='_1SIMq _3v0y7 _349XD']/descendant::a[@href='/resources']")).click();
+		return new Resources(driver);
+
+	}
+
 }
