@@ -1,0 +1,29 @@
+package org.example.schoology.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class GroupPage {
+
+   // private final By cssGroupProfile = By.cssSelector("#s-update-create-form");
+
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    @FindBy(css= "#s-update-create-form")
+    private WebElement updateCreateFormPost;
+
+    public GroupPage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, 30);
+        PageFactory.initElements(driver, this);
+
+        wait.until(ExpectedConditions.visibilityOf(updateCreateFormPost));
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(cssGroupProfile));
+    }
+}
