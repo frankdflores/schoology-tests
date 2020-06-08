@@ -24,16 +24,18 @@ public class SubMenu {
 		PageFactory.initElements(driver, this);
 	}
 
-	public Courses clickCourseLink() {
+	public Courses clickMyCoursesLink() {
 		sub_menu_course.click();
 		//driver.findElement(By.cssSelector(String.format("a[href='/%s']",name_menu))).click();
 		return new Courses(driver);
 	}
 
-	public Groups clickGroupLink() {
+	public Groups clickGroupsLink() {
 		sub_menu_group.click();
 		//driver.findElement(By.cssSelector(String.format("a[href='/%s']",name_menu))).click();
 		return new Groups(driver);
 	}
+
+
 
 }

@@ -12,7 +12,7 @@ public class GroupsTest {
         Login login = new Login();
         Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
         SubMenu subMenu = home.clickMenu("Groups");
-        Groups groups = subMenu.clickGroupLink();
+        Groups groups = subMenu.clickGroupsLink();
         CreateGroupPopup createGroupPopup = groups.clickCreateGroupButton();
         //Course course = new Course();
         String groupName = "Test Group";

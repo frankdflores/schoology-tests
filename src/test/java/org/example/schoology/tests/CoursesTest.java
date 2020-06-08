@@ -4,54 +4,53 @@ import org.example.schoology.pages.Courses;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
+import org.example.schoology.pages.CoursePage;
+import org.example.schoology.pages.EditCoursePopup;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class CoursesTest {
+
+	public static final String PREFIX_AT = "AT_";
 
 	@Test
 	public void editCourse() {
 		Login login = new Login();
-		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
+		Home home = login.loginAs("ovando.noni@gmail.com", "Testnovando123E@");
 		SubMenu subMenu = home.clickMenu("Courses");
-		Courses courses = subMenu.clickCourseLink();
+		Courses courses = subMenu.clickMyCoursesLink();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 		//Course course = new Course();
-		String courseName = "Test Course";
+		String courseName = PREFIX_AT + "Test Course" + System.currentTimeMillis();
 
 		Map<String, String> courseMap = new HashMap<>();
 		courseMap.put("name", courseName);
 		courseMap.put("section", "Section");
 		courseMap.put("area", "Mathematics");
 		courseMap.put("level", "Undergraduate");
-		home = createCoursePopup.create(courseMap);
+		CoursePage coursePage = createCoursePopup.create(courseMap);
 
+		// When
 		subMenu = home.clickMenu("Courses");
-		courses = subMenu.clickCourseLink();
-		courses.editCourseAction(courseName);
+		courses = subMenu.clickMyCoursesLink();
+		EditCoursePopup editCoursePopup = courses.clickEditCourse(courseName);
+		courseMap = new HashMap<>();
+		courseMap.put("section", "Section Test");
+		courseMap.put("area", "Science");
+		courses = editCoursePopup.edit(courseMap);
 
-//		driver.findElement(By.cssSelector("a.create-course-btn")).click();
-//
-//		String courseName = "Test Course";
-//		driver.findElement(By.cssSelector("#edit-course-name")).sendKeys(courseName);
-//		WebElement sectionField = driver.findElement(By.cssSelector("#edit-section-name-1"));
-//		sectionField.clear();
-//		sectionField.sendKeys("Section");
-//		Select subjectArea = new Select(driver.findElement(By.cssSelector("#edit-subject-area")));
-//		subjectArea.selectByVisibleText("Mathematics");
-//		Select level = new Select(driver.findElement(By.cssSelector("#edit-grade-level-range-start")));
-//		level.selectByVisibleText("Undergraduate");
-//
-//		driver.findElement(By.cssSelector("#edit-submit")).click();
-//
-//		driver.findElement(By.xpath("//span[text()='Courses']/parent::button")).click();
-//
-//		driver.findElement(By.cssSelector("a[href='/courses']")).click();
-//
-//		String courseActions = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
-//		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
+		// Then
+		// Soft Assert
+		// Hard Assert
+		Assert.assertEquals("The section has been updated.",
+				courses.getMessage());
+		Assert.assertEquals("Section Test",
+				courses.getSectionByName(courseName));
 	}
 
 }
