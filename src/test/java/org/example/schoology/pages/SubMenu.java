@@ -12,6 +12,9 @@ public class SubMenu {
 	@FindBy(css = "a[href='/courses']")
 	private WebElement coursesButton;
 
+	@FindBy(css = "a[href='/groups']")
+	private WebElement groupsButton;
+
 	public SubMenu(WebDriver driver) {
 
 		this.driver = driver;
@@ -21,6 +24,11 @@ public class SubMenu {
 	public Courses clickMyCoursesLink() {
 		coursesButton.click();
 		return new Courses(driver);
+	}
+
+	public Groups clickMyGroupsLink() {
+		groupsButton.click();
+		return new Groups(driver);
 	}
 
 }
