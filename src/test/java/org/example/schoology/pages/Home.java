@@ -6,28 +6,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Home {
 
-	private WebDriver driver;
-	private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
-	public Home(WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver, 30);
-	}
+    public Home(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, 30);
+    }
 
-	/**
-	 * This only works for Courses and Groups
-	 * Resources and More menu has another behavior.
-	 * @param menuName
-	 * @return
-	 */
-	public SubMenu clickMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
-		return new SubMenu(driver);
-	}
+    /**
+     * This only works for Courses and Groups
+     * Resources and More menu has another behavior.
+     *
+     * @param menuName
+     * @return
+     */
+    public SubMenu clickMenu(String menuName) {
+        driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
+        return new SubMenu(driver);
+    }
 
-	public Home cancelVerificationAccount() {
-		driver.findElement(By.cssSelector("input[value='Cancel']")).click();
-		return this;
-	}
+    public Home cancelVerificationAccount() {
+        driver.findElement(By.cssSelector("input[value='Cancel']")).click();
+        return this;
+    }
+
+    public Resources clickResources() {
+        driver.findElement(By.cssSelector("li._24avl>a._1SIMq")).click();
+        return new Resources(driver);
+    }
 
 }
