@@ -24,6 +24,6 @@ public class GroupTest {
 //        courseMap.put("category", "Undergraduate");
 
         createGroupPopup.create(courseMap);
-        
+
     }
 }

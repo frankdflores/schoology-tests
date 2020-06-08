@@ -1,10 +1,14 @@
 package org.example.schoology.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +16,7 @@ import java.util.Map;
 public class CreateCoursePopup {
 
     WebDriver driver;
+    WebDriverWait wait;
 
     @FindBy(css = "#edit-course-name")
     WebElement courseNameTextField;
@@ -25,15 +30,16 @@ public class CreateCoursePopup {
     @FindBy(css = "#edit-grade-level-range-start")
     WebElement editGradeLevelRangeStart;
 
-    @FindBy(css = "a[href='/courses']")
+    @FindBy(css = "#edit-submit")
     WebElement createCourseButton;
 
     public CreateCoursePopup(WebDriver driver){
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 30);
         PageFactory.initElements(driver, this);
     }
 
-    public void create(Map<String, String> courseName){
+    public CoursePage create(Map<String, String> courseName){
 
         Map<String, Step> stepsMap = new HashMap<>();
 
@@ -47,6 +53,10 @@ public class CreateCoursePopup {
         }
 
         createCourseButton.click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#course-profile-materials")));
+
+        return new CoursePage(driver);
 
     }
 

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +50,8 @@ public class CreateGroupPopup {
             stepsMap.get(keyField).execute();
         }
 
-//        createGroupButton.click();
+        createGroupButton.click();
+//        return new CoursePage(driver);
 
     }
 

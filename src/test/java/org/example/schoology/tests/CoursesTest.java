@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class CoursesTest {
 
+	public static final String PREFIX_AT = "AT";
+
 	@Test
 	public void editCourse() {
 		Login login = new Login();
@@ -15,17 +17,21 @@ public class CoursesTest {
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
 		CreateCoursePopup createCoursePopup = courses.openCourseModal();
-		String coursName = "Test Course MZ";
+
+		String courseName = PREFIX_AT + "Test Course MZ" + System.currentTimeMillis();
 		Map<String, String> courseMap = new HashMap<>();
-		courseMap.put("name", coursName);
+		courseMap.put("name", courseName);
 		courseMap.put("section", "Section");
 		courseMap.put("area", "Mathematics");
 		courseMap.put("level", "Undergraduate");
 
-		createCoursePopup.create(courseMap);
+		CoursePage coursePage = createCoursePopup.create(courseMap);
 
-//		String courseActions = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
-//		driver.findElement(By.xpath(String.format(courseActions, courseName))).click();
+		subMenu = home.clickMenu("Courses");
+		courses = subMenu.clickMyCoursesLink();
+		courses.clickEditCourse(courseName);
+
+
 	}
 
 }
