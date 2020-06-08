@@ -20,9 +20,13 @@ public class Home {
 	 * @param menuName
 	 * @return
 	 */
-	public SubMenu clickMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
-		return new SubMenu(driver);
+	public Object clickMenu(String menuName) {
+		if (menuName.equals("Resources")) {
+			driver.findElement(By.xpath(String.format("//a[text()='%s']", menuName))).click();
+			return new Resources(driver);
+		} else {
+			driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
+			return new SubMenu(driver);
+		}
 	}
-
 }

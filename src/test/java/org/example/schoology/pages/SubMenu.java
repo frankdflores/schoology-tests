@@ -10,17 +10,25 @@ public class SubMenu {
 	private WebDriver driver;
 
 	@FindBy(css = "a[href='/courses']")
-	private WebElement coursesButton;
+	private WebElement coursesLink;
+
+	@FindBy(css = "a[href='/groups']")
+	private WebElement groupsLink;
+
 
 	public SubMenu(WebDriver driver) {
-
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
 	public Courses clickMyCoursesLink() {
-		coursesButton.click();
+		coursesLink.click();
 		return new Courses(driver);
+	}
+
+	public Groups clickMyGroupsLink() {
+		groupsLink.click();
+		return new Groups(driver);
 	}
 
 }

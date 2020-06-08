@@ -21,8 +21,8 @@ public class CoursesTest {
 	public void editCourseTest() {
 		// Given
 		Login login = new Login();
-		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
-		SubMenu subMenu = home.clickMenu("Courses");
+		Home home = login.loginAs("dennis.gamboa17@hotmail.com", "P4ssw0rd123");
+		SubMenu subMenu = (SubMenu) home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 		String courseName = PREFIX_AT + "Test Course" + System.currentTimeMillis();
@@ -35,7 +35,7 @@ public class CoursesTest {
 		CoursePage coursePage = createCoursePopup.create(courseMap);
 
 		// When
-		subMenu = home.clickMenu("Courses");
+		subMenu = (SubMenu) home.clickMenu("Courses");
 		courses = subMenu.clickMyCoursesLink();
 		EditCoursePopup editCoursePopup = courses.clickEditCourse(courseName);
 		courseMap = new HashMap<>();
