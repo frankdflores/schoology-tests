@@ -1,14 +1,13 @@
 package org.example.schoology.tests;
 
-import org.example.schoology.pages.Courses;
 import org.example.schoology.pages.Group;
 import org.example.schoology.pages.Groups;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
-import org.example.schoology.pages.Materials;
-import org.example.schoology.pages.PopupCreateCourse;
 import org.example.schoology.pages.PopupCreateGroup;
+import org.example.schoology.pages.PopupEditGroup;
 import org.example.schoology.pages.SubMenu;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -37,7 +36,14 @@ public class GroupsTest {
 
         subMenu = home.clickMenu("Groups");
         groups = subMenu.clickMyGroupsLink();
-        popupCreateGroup = groups.clickEditGroup(groupName);
+        PopupEditGroup popupEditGroup = groups.clickEditGroup(groupName);
 
+        String NewgroupName = PREFIX_AT + "Test Group" + System.currentTimeMillis();
+        Map<String, String> editGroupMap = new HashMap<>();
+        editGroupMap.put("name", NewgroupName);
+        groups = popupEditGroup.fillInTheFieldsAndEdit(editGroupMap);
+
+        Assert.assertEquals(String.format("%s has been saved.", editGroupMap.get("name")), groups.getMessage());
+        Assert.assertEquals(editGroupMap.get("name"), groups.getGroupByName(editGroupMap.get("name")));
     }
 }
