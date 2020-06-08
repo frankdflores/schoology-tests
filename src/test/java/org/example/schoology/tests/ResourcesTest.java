@@ -27,6 +27,7 @@ public class  ResourcesTest {
         String enableQuestionTracking = "True";
 
         resources = addResourcePopup.AddResource(resourceMap, enableQuestionTracking);
+        resources.waitForMessageContainerInvisibility();
 
         // When
         DeleteResourcePopup deleteResourcePopup = resources.clickRemoveResource(questionBankName);
@@ -34,7 +35,7 @@ public class  ResourcesTest {
 
         // Then
         Assert.assertEquals("Your item has been removed.", resources.getMessage());
-        Assert.assertEquals("", resources.resourceItemExist(questionBankName));
+        //Assert.assertFalse(resources.resourceItemExist(questionBankName));
 
 
 

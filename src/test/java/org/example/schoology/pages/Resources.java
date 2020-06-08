@@ -22,6 +22,10 @@ public class Resources {
     @FindBy(css = ".messages .message-text")
     private WebElement messages;
 
+    @FindBy(css = "#library-wrapper div.messages-container")
+    private WebElement messageContainer;
+
+
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -34,9 +38,13 @@ public class Resources {
 
     public AddResourcePopup clickAddResource (String resourceOption){
         WebElement addResourceButton = driver.findElement(By.xpath(ADD_RESOURCE_ACTIONS_BUTTON));
-
         addResourceButton.click();
-        addQuestionBankOption.click();
+
+        switch (resourceOption){
+            case "Add Question Bank":
+                addQuestionBankOption.click();
+                break;
+        }
         return new AddResourcePopup(driver);
     }
 
@@ -52,18 +60,24 @@ public class Resources {
 
     }
 
-    public String resourceItemExist(String resourceName){
+    public boolean resourceItemExist(String resourceName){
         try {
-            return driver.findElement(By.xpath(String.format(RESOURCE_ITEM, resourceName))).getText();
+           driver.findElement(By.xpath(String.format(RESOURCE_ITEM, resourceName))).getText();
+           return true;
         }
         catch (NoSuchElementException e) {
-            return "";
+            return false;
         }
     }
 
     public String getMessage() {
         wait.until(ExpectedConditions.elementToBeClickable(messages));
         return messages.getText();
+    }
+
+    public void waitForMessageContainerInvisibility(){
+        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(messageContainer)));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#library-wrapper div.messages-container")));
     }
 
 }
