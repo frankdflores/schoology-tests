@@ -11,9 +11,10 @@ public class SubMenu {
 		this.driver = driver;
 	}
 
-	public Courses clickMyCoursesLink() {
-		driver.findElement(By.cssSelector("a[href='/courses']")).click();
-		return new Courses(driver);
+	public AddQuestionBankPopup clickAddResourcesButton() {
+		driver.findElement(By.cssSelector("div#toolbar-add")).click();
+		driver.findElement(By.xpath("//a[text()='Add Question Bank']")).click();
+		return new AddQuestionBankPopup(driver);
 	}
 
 }

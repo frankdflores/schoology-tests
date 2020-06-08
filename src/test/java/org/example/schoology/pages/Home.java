@@ -14,14 +14,8 @@ public class Home {
 		this.wait = new WebDriverWait(driver, 30);
 	}
 
-	/**
-	 * This only works for Courses and Groups
-	 * Resources and More menu has another behavior.
-	 * @param menuName
-	 * @return
-	 */
 	public SubMenu clickMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
+		driver.findElement(By.xpath(String.format("//a[text()='%s']", menuName))).click();
 		return new SubMenu(driver);
 	}
 

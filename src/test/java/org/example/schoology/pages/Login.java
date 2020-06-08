@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Login {
 
-	// This info should come from config file.
 	public static final int DEFAULT_IMPLICIT_TIMEOUT = 15;
 	public static final int MIN_IMPLICIT_TIMEOUT = 3;
 
@@ -48,13 +47,11 @@ public class Login {
 
 	private void verifyYourAccount() {
 		try {
-//			// Changing timeout
 			driver.manage().timeouts().implicitlyWait(MIN_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
 			cancelVerifyYourAccountButton.click();
 		} catch (NoSuchElementException e) {
 			// nothing.
 		} finally {
-//			// Restore timeout
 			driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
 		}
 	}
