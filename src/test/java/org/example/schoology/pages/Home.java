@@ -24,5 +24,8 @@ public class Home {
 		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
 		return new SubMenu(driver);
 	}
-
+	public Resources clickResourceMenu() {
+		driver.findElement(By.cssSelector("li._24avl>a._1SIMq")).click();
+		return new Resources(driver);
+	}
 }
