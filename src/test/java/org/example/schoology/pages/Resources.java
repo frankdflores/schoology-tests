@@ -75,7 +75,7 @@ public class Resources {
         return messages.getText();
     }
 
-    public void waitForMessageContainerInvisibility(){
+    public void waitForMessageContainerDisappear(){
         //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(messageContainer)));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#library-wrapper div.messages-container")));
     }
