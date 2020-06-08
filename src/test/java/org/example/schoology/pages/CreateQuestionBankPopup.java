@@ -42,7 +42,7 @@ public class CreateQuestionBankPopup {
         Map<String, Step> stepsMap = new HashMap<>();
         stepsMap.put("name", () -> setName(questionMap.get("name")));
         stepsMap.put("description", () -> setDescription(questionMap.get("description")));
-      //  stepsMap.put("tracking" , () -> setTracking(courseMap.get("tracking")));
+        stepsMap.put("enableTracking" , () -> checkTrackingBox(questionMap.get("enableTracking")));
 
         for (String keyField : questionMap.keySet()) {
             stepsMap.get(keyField).execute();
@@ -58,8 +58,10 @@ public class CreateQuestionBankPopup {
         questionDescriptionTextField.sendKeys(description);
     }
 
-    private void setTracking(String tracking) {
-        enableTracking.sendKeys(tracking);
+    private void checkTrackingBox(String value) {
+        if (value.equals("True")) {
+            enableTracking.click();
+        }
     }
 
 }

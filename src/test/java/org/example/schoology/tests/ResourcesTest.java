@@ -6,6 +6,7 @@ import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.ResourcesDropDown;
 import org.example.schoology.pages.Resources;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class ResourcesTest {
         Map<String, String> questionMap = new HashMap<>();
         questionMap.put("name", questionName);
         questionMap.put("description", "test question description");
+        questionMap.put("enableTracking", "True");
 
         resourcesPage = createQuestionBankPopup.create(questionMap);
 
@@ -35,6 +37,12 @@ public class ResourcesTest {
         resourcesPage = home.clickMenuResources("Resources");
         DeleteQuestionBank deleteQuestionBank = resourcesPage.clickDeleteQuestion(questionName);
         Resources resources = deleteQuestionBank.delete();
+
+        //Then
+        Assert.assertEquals("Your item has been removed.", resources.getMessage());
+
+        boolean bool = resources.getResourceByName(questionName);
+        Assert.assertFalse(bool);
 
     }
 
