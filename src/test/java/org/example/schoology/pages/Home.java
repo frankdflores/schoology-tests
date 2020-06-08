@@ -27,4 +27,9 @@ public class Home {
 		return new SubMenu(driver);
 	}
 
+	public Resources clickResourcesMenu(String menuName) {
+		driver.findElement(By.xpath(String.format("//a[text()='Resources']", menuName))).click();
+		return new Resources(driver);
+	}
+
 }

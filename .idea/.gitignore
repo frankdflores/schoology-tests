@@ -30,7 +30,26 @@ buildNumber.properties
 ##############################
 ## Gradle
 ##############################
+
+
+F:\WebAutomation\CodeAlex\demo\.gradle
+F:\WebAutomation\CodeAlex\demo\build
+F:\WebAutomation\CodeAlex\demo\build.gradle
+F:\WebAutomation\CodeAlex\demo\debug.log
+F:\WebAutomation\CodeAlex\demo\gradlew
+F:\WebAutomation\CodeAlex\demo\gradlew.bat
+F:\WebAutomation\CodeAlex\demo\hs_err_pid2032.log
+F:\WebAutomation\CodeAlex\demo\hs_err_pid6216.log
+F:\WebAutomation\CodeAlex\demo\hs_err_pid13372.log
+F:\WebAutomation\CodeAlex\demo\README.md
+F:\WebAutomation\CodeAlex\demo\replay_pid6216.log
+F:\WebAutomation\CodeAlex\demo\settings.gradle
+
 bin/
+.gradle/
+5.2.1
+buildOutputCleanup
+vcs-1
 build/
 .gradle
 .gradletasknamecache
@@ -39,6 +58,12 @@ gradle-app.setting
 gradlew.bat
 gradlew
 gradle
+classes
+generated
+reports
+test-results
+tmp
+
 
 
 ##############################
