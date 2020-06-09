@@ -1,6 +1,7 @@
 package org.example.schoology.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,10 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class Resources {
     private WebDriver driver;
     protected WebDriverWait wait;
-
 
     @FindBy (xpath = "//img[@class='action-links-unfold-icon']//ancestor::div[@id='toolbar-add-wrapper']")
     private WebElement addResourceButton;
@@ -27,7 +29,7 @@ public class Resources {
     @FindBy(xpath="//input[@value='Delete']")
     private WebElement deleteButton;
 
-    private static final String XPATH_RESOURCE_BY_NAME = ("//a[text()='%s']/parent::td");
+    private static final String XPATH_RESOURCE_BY_NAME = ("//a[text()='%s']");
 
     public static final String RESOURCE_ACTION_BUTTON = "//a[text()='%s']/parent::td/following-sibling::td/child::div/child::div[@role='button']";
     public static final String DELETE_RESOURCE_ACTION_BUTTON = "//a[text()='%s']/ancestor::tr//ul//li[contains(@class,'action-delete')]";
@@ -61,9 +63,8 @@ public class Resources {
 
     public boolean getResourceByName(String resourceName){
         try {
-            driver.findElement(By.xpath(String.format(XPATH_RESOURCE_BY_NAME, resourceName))).getText();
-            return true;
-        }catch (Exception e){
+            return driver.findElement(By.xpath(String.format(XPATH_RESOURCE_BY_NAME, resourceName))).isDisplayed();
+        }catch (NoSuchElementException e){
             return false;
         }
     }
