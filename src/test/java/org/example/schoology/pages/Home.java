@@ -2,6 +2,7 @@ package org.example.schoology.pages;
 
 import org.example.schoology.pages.courses.CoursesSubMenu;
 import org.example.schoology.pages.groups.GroupsSubMenu;
+import org.example.schoology.pages.resources.MyResources;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +24,7 @@ public class Home {
 	 * @return
 	 */
 	public void clickMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
+		driver.findElement(By.xpath(String.format("//a[text()='%s']", menuName))).click();
 	}
 
 	public CoursesSubMenu clickCoursesMenu() {
@@ -34,5 +35,10 @@ public class Home {
 	public GroupsSubMenu clickGroupsMenu() {
 		clickMenu("Groups");
 		return new GroupsSubMenu(driver);
+	}
+
+	public MyResources clickResourcesMenu() {
+		clickMenu("Resources");
+		return new MyResources(driver);
 	}
 }

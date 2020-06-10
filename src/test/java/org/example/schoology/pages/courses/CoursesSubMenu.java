@@ -1,6 +1,5 @@
 package org.example.schoology.pages.courses;
 
-import org.example.schoology.pages.groups.Groups;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

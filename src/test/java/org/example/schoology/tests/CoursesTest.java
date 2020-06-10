@@ -1,18 +1,17 @@
 package org.example.schoology.tests;
 
-import org.example.schoology.pages.courses.Courses;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.example.schoology.pages.CoursePage;
-import org.example.schoology.pages.Courses;
-import org.example.schoology.pages.CreateCoursePopup;
-import org.example.schoology.pages.EditCoursePopup;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
-import org.junit.After;
+import org.example.schoology.pages.courses.CoursePage;
+import org.example.schoology.pages.courses.Courses;
+import org.example.schoology.pages.courses.CoursesSubMenu;
+import org.example.schoology.pages.courses.CreateCoursePopup;
+import org.example.schoology.pages.courses.EditCoursePopup;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CoursesTest {
 
@@ -20,31 +19,27 @@ public class CoursesTest {
 
 	@Test
 	public void editCourseTest() {
+
 		// Given
 		Login login = new Login();
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
-		SubMenu subMenu = home.clickMenu("Courses");
-		Courses courses = subMenu.clickMyCoursesLink();
+		CoursesSubMenu coursesSubMenu = home.clickCoursesMenu();
+		Courses courses = coursesSubMenu.clickMyCoursesLink();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
-		String courseName = PREFIX_AT + "Test Course" + System.currentTimeMillis();
+
 
 		// Test Data
-		String courseName = "Test Course";
+		String courseName = PREFIX_AT + "Test Course" + System.currentTimeMillis();
 		Map<String, String> courseMap = new HashMap<>();
 		courseMap.put("name", courseName);
 		courseMap.put("section", "Section");
 		courseMap.put("area", "Mathematics");
 		courseMap.put("level", "Undergraduate");
 		CoursePage coursePage = createCoursePopup.create(courseMap);
-		login = new Login();
-		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
-		CoursesSubMenu coursesSubMenu = home.clickCoursesMenu();
-		Courses courses = coursesSubMenu.clickMyCoursesLink();
-		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 
 		// When
-		subMenu = home.clickMenu("Courses");
-		courses = subMenu.clickMyCoursesLink();
+		coursesSubMenu = home.clickCoursesMenu();
+		courses = coursesSubMenu.clickMyCoursesLink();
 		EditCoursePopup editCoursePopup = courses.clickEditCourse(courseName);
 		courseMap = new HashMap<>();
 		courseMap.put("section", "Section Test");
@@ -58,11 +53,5 @@ public class CoursesTest {
 				courses.getMessage());
 		Assert.assertEquals("Section Test",
 				courses.getSectionByName(courseName));
-	}
-
-	// ToDo: This after method is temporal, remove it when a driver manager is implemented
-	@After
-	public void quitDriver() {
-		login.quit();
 	}
 }

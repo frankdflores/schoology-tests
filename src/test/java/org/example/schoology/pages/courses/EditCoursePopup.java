@@ -1,10 +1,8 @@
-package org.example.schoology.pages;
-
-import java.util.Map;
+package org.example.schoology.pages.courses;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import java.util.Map;
 
 public class EditCoursePopup extends AbstractCoursePopup {
 
