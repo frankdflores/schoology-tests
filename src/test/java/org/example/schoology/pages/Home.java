@@ -26,11 +26,7 @@ public class Home {
 	 * @return
 	 */
 	public SubMenu clickMenu(String menuName) {
-		if (menuName.equals("Resources")) {
-			driver.findElement(By.xpath(String.format("//a[text()='%s']", menuName))).click();
-		} else {
-			driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
-		}
+		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
 		return new SubMenu(driver);
 	}
 

@@ -41,16 +41,10 @@ public class AddQuestionBankPopup {
 	}
 
 	private void setEnableQuestionTracking(boolean enable){
-		if (enable) {
-			if (!enableQuestionTrackingCheckBox.isSelected()) {
-				enableQuestionTrackingCheckBox.click();
-			}
-		} else {
-			if (enableQuestionTrackingCheckBox.isSelected()) {
-				enableQuestionTrackingCheckBox.click();
-			}
-		}
-	}
+        if (enable) {
+            enableQuestionTrackingCheckBox.click();
+        }
+    }
 
 	private void fill(Map<String, String> questionBankMap) {
 		Map<String, Step> stepsMap = new HashMap<>();
