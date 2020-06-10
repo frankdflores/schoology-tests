@@ -28,10 +28,10 @@ public abstract class AbstractGroupPopup {
 	@FindBy(css = "#edit-category")
 	private WebElement categoryDropDown;
 
-	@FindBy(css = "#edit-submit")
+	@FindBy(css = ".create-form #edit-submit")
 	protected WebElement submitButton;
 
-	private WebDriver driver;
+	protected WebDriver driver;
 
 	public AbstractGroupPopup(WebDriver driver) {
 		this.driver = driver;
@@ -61,7 +61,7 @@ public abstract class AbstractGroupPopup {
 		categoryField.selectByVisibleText(category);
 	}
 
-	public void create(Map<String, String> courseMap) {
+	public void fill(Map<String, String> courseMap) {
 		Map<String, Step> stepsMap = new HashMap<>();
 		stepsMap.put("name", () -> setName(courseMap.get("name")));
 		stepsMap.put("description", () -> setDescription(courseMap.get("description")));
@@ -72,6 +72,5 @@ public abstract class AbstractGroupPopup {
 		for (String keyField : courseMap.keySet()) {
 			stepsMap.get(keyField).execute();
 		}
-		submitButton.click();
 	}
 }

@@ -24,7 +24,7 @@ public class Home {
 	 * @return
 	 */
 	public void clickMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//a[text()='%s']", menuName))).click();
+		driver.findElement(By.xpath(String.format("//*[text()='%s' and (self::a or self::span)]", menuName))).click();
 	}
 
 	public CoursesSubMenu clickCoursesMenu() {

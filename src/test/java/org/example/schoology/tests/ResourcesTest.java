@@ -12,10 +12,10 @@ import java.util.HashMap;
 
 public class ResourcesTest {
 
-    private static final String PREFIX_WA_YA = "WA_YA_";
+    public static final String PREFIX_WA_YA = "WA_YA_";
 
     @Test
-    public void deleteQuestionBankResource() {
+    public void deleteQuestionBankResourceTest() {
 
         // Test Data
         String resourceName = PREFIX_WA_YA + "Test Resource" + System.currentTimeMillis();
