@@ -13,67 +13,65 @@ import java.util.Map;
 
 public abstract class AbstractGroupPopup {
 
-	@FindBy(css = "#edit-course-name")
-	private WebElement courseNameTextField;
+	@FindBy(css = "#edit-name")
+	private WebElement groupNameTextField;
 
-	@FindBy(css = "#edit-section-name-1")
-	private WebElement sectionNameTextField;
+	@FindBy(css = "#edit-description")
+	private WebElement descriptionTextArea;
 
-	@FindBy(css = "#edit-subject-area" )
-	private WebElement subjectAreaDropDown;
+	@FindBy(css = "#edit-privacy-level" )
+	private WebElement privacyDropDown;
 
-	@FindBy(css = "#edit-grade-level-range-start")
-	private WebElement levelDropDown;
+	@FindBy(css = "#edit-invite-type")
+	private WebElement accessDropDown;
+
+	@FindBy(css = "#edit-category")
+	private WebElement categoryDropDown;
 
 	@FindBy(css = "#edit-submit")
-	protected  WebElement submitButton;
+	protected WebElement submitButton;
 
-	protected WebDriver driver;
-
-	protected WebDriverWait wait;
+	private WebDriver driver;
 
 	public AbstractGroupPopup(WebDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait(driver, 30);
 		PageFactory.initElements(driver, this);
 	}
 
-	public void fill(Map<String, String> courseMap) {
+	private void setName(final String name) {
+		groupNameTextField.sendKeys(name);
+	}
+
+	private void setDescription(final String description) {
+		descriptionTextArea.sendKeys(description);
+	}
+
+	private void selectPrivacy(final String privacy) {
+		Select privacyArea = new Select(privacyDropDown);
+		privacyArea.selectByVisibleText(privacy);
+	}
+
+	private void selectAccess(final String access) {
+		Select accessField = new Select(accessDropDown);
+		accessField.selectByVisibleText(access);
+	}
+
+	private void selectCategory(final String category) {
+		Select categoryField = new Select(categoryDropDown);
+		categoryField.selectByVisibleText(category);
+	}
+
+	public void create(Map<String, String> courseMap) {
 		Map<String, Step> stepsMap = new HashMap<>();
 		stepsMap.put("name", () -> setName(courseMap.get("name")));
-		stepsMap.put("section", () -> setSection(courseMap.get("section")));
-		stepsMap.put("area", () -> selectSubjectArea(courseMap.get("area")));
-		stepsMap.put("level", () -> selectLevel(courseMap.get("level")));
+		stepsMap.put("description", () -> setDescription(courseMap.get("description")));
+		stepsMap.put("privacy", () -> selectPrivacy(courseMap.get("privacy")));
+		stepsMap.put("access", () -> selectAccess(courseMap.get("access")));
+		stepsMap.put("category", () -> selectCategory(courseMap.get("category")));
 
 		for (String keyField : courseMap.keySet()) {
 			stepsMap.get(keyField).execute();
 		}
-		// TODO
-		// web element is not removed but is added a display none
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".course-create-popup")));
-//
-//		// tag element is removed
-		// loading
-//		wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector(".course-create-popup"))));
-	}
-
-	public void setName(String name) {
-		courseNameTextField.sendKeys(name);
-	}
-
-	private void setSection(String section) {
-		WebElement sectionField = sectionNameTextField;
-		sectionField.clear();
-		sectionField.sendKeys(section);
-	}
-
-	public void selectSubjectArea(String area) {
-		Select subjectArea = new Select(subjectAreaDropDown);
-		subjectArea.selectByVisibleText(area);
-	}
-
-	public void selectLevel(String level) {
-		Select levelField = new Select(levelDropDown);
-		levelField.selectByVisibleText(level);
+		submitButton.click();
 	}
 }
