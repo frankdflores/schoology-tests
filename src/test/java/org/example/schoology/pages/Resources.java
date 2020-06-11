@@ -12,7 +12,7 @@ public class Resources {
 
     public static final String ACTIONS_BUTTON = "//a[text()='%s']/ancestor::tr//div[@href='#']";
     public static final String SELECT_ACTION = "//a[text()='%s']/ancestor::tr//ul//li[contains(@class,'action-delete')]";
-    public static final String RESOURCE_BY_NAME = "//a[text()='%s']";
+    public static final String RESOURCE_ITEM = "//a[text()='%s']";
     private final WebDriverWait wait;
 
     private WebDriver driver;
@@ -53,12 +53,13 @@ public class Resources {
     }
 
     public String getMessage() {
+        wait.until(ExpectedConditions.elementToBeClickable(messages));
         return messages.getText();
     }
 
-    public boolean getResourceByName(String groupName) {
+    public boolean getResourceByName(String resourceName) {
         try {
-            driver.findElement(By.xpath(String.format(RESOURCE_BY_NAME, groupName))).getText();
+            driver.findElement(By.xpath(String.format(RESOURCE_ITEM, resourceName))).getText();
             return true;
         }catch (Exception e){
             return false;

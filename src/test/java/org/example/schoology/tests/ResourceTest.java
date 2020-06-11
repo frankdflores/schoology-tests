@@ -36,10 +36,8 @@ public class ResourceTest {
         // Then
         resources.deleteResources(resourceName);
 
-        Assert.assertEquals("", resources.getMessage());
-
-        boolean bool = resources.getResourceByName(resourceName);
-        Assert.assertFalse(bool);
+        Assert.assertEquals("Your item has been removed.", resources.getMessage());
+        Assert.assertFalse(resources.getResourceByName(resourceName));
     }
 
 }
