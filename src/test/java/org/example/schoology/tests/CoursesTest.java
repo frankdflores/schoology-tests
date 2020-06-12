@@ -10,6 +10,7 @@ import org.example.schoology.pages.EditCoursePopup;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
