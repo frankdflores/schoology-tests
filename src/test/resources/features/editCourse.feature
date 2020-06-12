@@ -2,13 +2,13 @@ Feature: Courses
 
   Scenario: Edit a course
     Given I log in as "Trainer" user
-    And I create a course with:
+    And I create a "Course" with:
       | name    | SeleniumWebDriver |
       | section | New Section       |
       | area    | Mathematics       |
       | level   | Undergraduate     |
-    When I navigate to Courses
-    And I edit the "SeleniumWebDriver" course with:
+    When I navigate to "Courses"
+    And I edit the "SeleniumWebDriver" "course" with:
       | section | Section Test |
       | area    | Science      |
     Then I should see the "The section has been updated." message
