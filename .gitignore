@@ -114,3 +114,9 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+/build/
+/.gradle/
+/.gradle/
+/.idea/
+/build/
+/gradle/

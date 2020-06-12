@@ -2,8 +2,6 @@ package org.example.schoology.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Home {
@@ -15,6 +13,7 @@ public class Home {
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver, 30);
 	}
+
 
 	/**
 	 * This only works for Courses and Groups
