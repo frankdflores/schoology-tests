@@ -1,11 +1,11 @@
 package org.example.schoology.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Resources {
@@ -13,17 +13,19 @@ public class Resources {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public static final String QUESTION_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::td /following-sibling::td//div[@class='action-links-unfold ']";
-    public static final String QUESTION_ACTIONS_EDIT_BUTTON = "//a[text()='%s']/ancestor::td /following-sibling::td//ul/li[@class='action-collection-template-edit action-edit']";
-    public static final String QUESTION_ACTIONS_DELETE_BUTTON = "//a[text()='%s']/ancestor::td /following-sibling::td/div/ul/li[@class='action-collection-template-delete action-delete ']";
+    public static final String QUESTION_ADD_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@class='action-links-unfold ']";
+    public static final String QUESTION_ACTIONS_BUTTON = "//a[text()='%s']/following::div[@class='action-links-unfold ']";
+    public static final String QUESTION_ACTIONS_DELETE_BUTTON = "//a[text()='%s']/following::a[@class='action-delete  sExtlink-processed popups-processed']";
     public static final String RESOURCE_BY_NAME = "//a[text()='%s']";
 
-    @FindBy(css = "#popups-0")
-    private WebElement updateTableResources;
+    @FindBy(css = "#collection-add-question-bank")
+    private WebElement addQuestionBankOption;
 
     @FindBy(css = ".messages .message-text")
     private WebElement messages;
 
+    @FindBy(css = "#library-wrapper div.messages-container")
+    private WebElement messageContainer;
 
     public Resources(WebDriver driver) {
         this.driver = driver;
@@ -31,18 +33,21 @@ public class Resources {
         PageFactory.initElements(driver,this);
     }
 
-    public ResourcesDropDown clickAddResourcesBtn() {
-        driver.findElement(By.xpath("//div[@id='toolbar-add-wrapper']")).click();
-        return new ResourcesDropDown(driver);
+    public CreateQuestionBankPopup clickAddResourcesBtn(String resourceOption) {
+        WebElement addResourceButton = driver.findElement(By.xpath(QUESTION_ADD_ACTIONS_BUTTON));
+        addResourceButton.click();
+
+        switch (resourceOption){
+            case "Add Question Bank":
+                addQuestionBankOption.click();
+                break;
+        }
+        return new CreateQuestionBankPopup(driver);
     }
 
     public DeleteQuestionBank clickDeleteQuestion(String questionName) {
         WebElement questionActionsButton = driver.findElement(By.xpath(String.format(QUESTION_ACTIONS_BUTTON, questionName)));
         WebElement deleteQuestion = driver.findElement(By.xpath(String.format(QUESTION_ACTIONS_DELETE_BUTTON,questionName)));
-
-        // Scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", questionActionsButton);
 
         questionActionsButton.click();
         deleteQuestion.click();
@@ -50,6 +55,7 @@ public class Resources {
     }
 
     public String getMessage() {
+        wait.until(ExpectedConditions.elementToBeClickable(messages));
         return messages.getText();
     }
 
@@ -60,5 +66,9 @@ public class Resources {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public void waitForMessageContainerDisappear(){
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#library-wrapper div.messages-container")));
     }
 }
