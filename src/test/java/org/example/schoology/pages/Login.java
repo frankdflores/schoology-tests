@@ -33,7 +33,7 @@ public class Login {
 	public Login() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
 		driver.get("https://app.schoology.com/login");
 		PageFactory.initElements(driver, this);
 	}
