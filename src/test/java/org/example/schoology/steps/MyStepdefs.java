@@ -7,17 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.SharedDriver;
-import org.example.schoology.pages.Course;
-import org.example.schoology.pages.Courses;
-import org.example.schoology.pages.CreateCoursePopup;
-import org.example.schoology.pages.EditCoursePopup;
-import org.example.schoology.pages.Group;
-import org.example.schoology.pages.Groups;
-import org.example.schoology.pages.Home;
-import org.example.schoology.pages.Login;
-import org.example.schoology.pages.CreateGroupPopup;
-import org.example.schoology.pages.EditGroupPopup;
-import org.example.schoology.pages.SubMenu;
+import org.example.schoology.pages.*;
 import org.junit.Assert;
 
 public class MyStepdefs {
@@ -30,6 +20,8 @@ public class MyStepdefs {
 
 	private Groups groups;
 
+	private Resources resources;
+
 	public MyStepdefs(SharedDriver sharedDriver) {
 
 	}
@@ -37,20 +29,27 @@ public class MyStepdefs {
 	@Given("I log in as {string} user")
 	public void iLogInAsUser(String account) {
 		Login login = new Login();
-		home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
+		home = login.loginAs("dennis.gamboa17@hotmail.com", "P4ssw0rd123");
 	}
 
 	@And("I create a course with:")
 	public void iCreateACourseWith(Map<String, String> datatable) {
-		subMenu = home.clickMenu("Courses");
+		subMenu = (SubMenu) home.clickMenu("Courses");
 		courses = subMenu.clickMyCoursesLink();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 		Course course = createCoursePopup.create(datatable);
 	}
 
+	@And("I create a {string} resource with:")
+	public void iCreateAResourceWith(String resourceName, Map<String, String> datatable) {
+		resources = (Resources) home.clickMenu("Resources");
+		AddQuestionBankPopup addResourcePopup = (AddQuestionBankPopup) resources.addResource(resourceName);
+		resources = addResourcePopup.create(datatable);
+	}
+
 	@And("I create a group with:")
 	public void iCreateAGroupWith(Map<String, String> datatable) {
-		subMenu = home.clickMenu("Groups");
+		subMenu = (SubMenu) home.clickMenu("Groups");
 		groups = subMenu.clickMyGroupsLink();
 		CreateGroupPopup createGroupPopup = groups.clickCreateGroupButton();
 		Group group = createGroupPopup.fillInTheFieldsAndCreate(datatable);
@@ -58,11 +57,15 @@ public class MyStepdefs {
 
 	@When("I navigate to {string}")
 	public void iNavigateToCourses(String menu) {
-		subMenu = home.clickMenu(menu);
-		if ("Courses".equals(menu)) {
-			courses = subMenu.clickMyCoursesLink();
-		} else {
-			groups = subMenu.clickMyGroupsLink();
+		if ("Resources".equals(menu)) {
+			resources = (Resources) home.clickMenu(menu);
+		}else {
+			subMenu = (SubMenu) home.clickMenu(menu);
+			if ("Courses".equals(menu)) {
+				courses = subMenu.clickMyCoursesLink();
+			} else {
+				groups = subMenu.clickMyGroupsLink();
+			}
 		}
 	}
 
@@ -85,7 +88,7 @@ public class MyStepdefs {
 
 	@Then("I should see {string} as a message")
 	public void iShouldSeeAsAMessage(String message) {
-		Assert.assertEquals(message, groups.getMessage());
+		Assert.assertEquals(message, resources.getMessage());
 
 	}
 
@@ -100,5 +103,14 @@ public class MyStepdefs {
 
 	}
 
+	@And("I delete the {string} resource")
+	public void iDeleteTheResource(String resourceName) {
+		DeleteResourcePopup deleteResource = resources.clickDeleteResource(resourceName);
+		resources = deleteResource.delete();
+	}
 
+	@And("I should not see a resource with {string} as a name")
+	public void iShouldNotSeeAResourceWithAsAName(String resourceName) {
+		Assert.assertEquals("", resources.getResourceName(resourceName));
+	}
 }

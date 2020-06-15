@@ -1,15 +1,13 @@
 package org.example.schoology.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.example.AbstractPage;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractAddQuestionBankPopup {
+public abstract class AbstractAddQuestionBankPopup extends AbstractPage {
 
     @FindBy (css = "#edit-title")
     private WebElement addQuestionBankNameTextField;
@@ -22,15 +20,6 @@ public abstract class AbstractAddQuestionBankPopup {
 
     @FindBy(css = "#edit-submit[value=\"Create\"]")
     protected WebElement submitButton;
-
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    public AbstractAddQuestionBankPopup(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver, this);
-    }
 
     private void setName(String name){
         WebElement questionNameField = addQuestionBankNameTextField;

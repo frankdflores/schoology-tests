@@ -1,20 +1,17 @@
 package org.example.schoology.pages;
 
+import org.example.AbstractPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Resources {
+public class Resources extends AbstractPage {
 
     public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::tr//div[@class='action-links-unfold ']";
     public static final String RESOURCE_NAME = "//a[text()='%s']";
-    private WebDriver driver;
-    private WebDriverWait wait;
 
     @FindBy(css = "#toolbar-add .action-links-unfold")
     private WebElement addResourcesDropdown;
@@ -25,15 +22,9 @@ public class Resources {
     @FindBy(css = ".messages .message-text")
     private WebElement messages;
 
-    public Resources(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver, this);
-    }
-
     public Map <String, Object> allResources() {
         Map<String, Object> resources = new HashMap<String, Object>();
-        resources.put("Add Question Bank", new AddQuestionBankPopup(driver));
+        resources.put("Add Question Bank", new AddQuestionBankPopup());
 
         return resources;
     }
@@ -48,7 +39,7 @@ public class Resources {
     }
 
     public DeleteResourcePopup clickDeleteResource(String resourceName){
-        wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(messages)));
+//        wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(messages)));
         WebElement resourceActionButton = driver.findElement(By.xpath(String.format(RESOURCE_ACTIONS_BUTTON, resourceName)));
 
         // Scroll
@@ -57,7 +48,7 @@ public class Resources {
 
         resourceActionButton.click();
         deleteResource.click();
-        return new DeleteResourcePopup(driver);
+        return new DeleteResourcePopup();
     }
 
     public String getResourceName(String resourceName){

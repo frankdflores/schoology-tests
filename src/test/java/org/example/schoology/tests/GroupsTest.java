@@ -1,12 +1,6 @@
 package org.example.schoology.tests;
 
-import org.example.schoology.pages.Login;
-import org.example.schoology.pages.Home;
-import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.Groups;
-import org.example.schoology.pages.CreateGroupPopup;
-import org.example.schoology.pages.GroupPage;
-import org.example.schoology.pages.EditGroupPopup;
+import org.example.schoology.pages.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +29,7 @@ public class GroupsTest {
         groupMap.put("privacy", "Group");
         groupMap.put("access", "Open");
         groupMap.put("category", "Musical Groups");
-        GroupPage groupPage = createGroupPopup.create(groupMap);
+        Group group = createGroupPopup.fillInTheFieldsAndCreate(groupMap);
 
 
         //When
@@ -48,7 +42,7 @@ public class GroupsTest {
         groupMap.put("privacy", "No One");
         groupMap.put("access", "Allow Requests");
         groupMap.put("category", "Faculty Groups");
-        groups = editGroupPopup.edit(groupMap);
+        groups = editGroupPopup.fillInTheFieldsAndEdit(groupMap);
 
 
         //then
