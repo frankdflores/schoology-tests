@@ -1,5 +1,6 @@
 package org.example.schoology.pages;
 
+import org.example.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,11 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Courses {
+public class Courses extends AbstractPage {
 
 	public static final String COURSE_ACTIONS_BUTTON = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
 	public static final String XPATH_SECTION_BY_NAME = "//span[text()='%s']/parent::p/parent::li//a[@class='sExtlink-processed']";
-	private WebDriver driver;
 
 	@FindBy(css = "a.create-course-btn")
 	private WebElement createCourseButton;
@@ -22,14 +22,9 @@ public class Courses {
 	@FindBy(css = ".messages .message-text")
 	private WebElement messages;
 
-	public Courses(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
-
 	public CreateCoursePopup clickCreateCourseButton() {
 		createCourseButton.click();
-		return new CreateCoursePopup(driver);
+		return new CreateCoursePopup();
 	}
 
 	public EditCoursePopup clickEditCourse(String courseName) {
@@ -41,7 +36,7 @@ public class Courses {
 
 		courseActionsButton.click();
 		editCourse.click();
-		return new EditCoursePopup(driver);
+		return new EditCoursePopup();
 	}
 
 	public String getMessage() {

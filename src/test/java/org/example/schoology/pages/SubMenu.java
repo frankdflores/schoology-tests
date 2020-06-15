@@ -1,19 +1,27 @@
 package org.example.schoology.pages;
 
-import org.openqa.selenium.By;
+import org.example.AbstractPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class SubMenu {
+public class SubMenu extends AbstractPage {
 
-	private WebDriver driver;
+	@FindBy(css = "a[href='/courses']")
+	private WebElement myCoursesLink;
 
-	public SubMenu(WebDriver driver) {
-		this.driver = driver;
-	}
+	@FindBy(css = "a[href='/groups']")
+	private WebElement myGroupsLink;
 
 	public Courses clickMyCoursesLink() {
-		driver.findElement(By.cssSelector("a[href='/courses']")).click();
-		return new Courses(driver);
+		myCoursesLink.click();
+		return new Courses();
+	}
+
+	public Groups clickMyGroupsLink() {
+		myGroupsLink.click();
+		return new Groups();
 	}
 
 	public Groups clickMyGroupsLink(){
