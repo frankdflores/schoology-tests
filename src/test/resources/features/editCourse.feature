@@ -7,7 +7,7 @@ Feature: Courses
       | section | New Section       |
       | area    | Mathematics       |
       | level   | Undergraduate     |
-    When I navigate to Courses
+    When I navigate to "Courses"
     And I edit the "SeleniumWebDriver" course with:
       | section | Section Test |
       | area    | Science      |

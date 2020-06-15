@@ -3,14 +3,15 @@ package org.example.schoology.tests;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.example.schoology.pages.CoursePage;
+import org.example.SharedDriver;
+import org.example.schoology.pages.Course;
 import org.example.schoology.pages.Courses;
 import org.example.schoology.pages.CreateCoursePopup;
 import org.example.schoology.pages.EditCoursePopup;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
-import org.junit.After;
+import org.example.schoology.steps.MyStepdefs;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class CoursesTest {
 		courseMap.put("section", "Section");
 		courseMap.put("area", "Mathematics");
 		courseMap.put("level", "Undergraduate");
-		CoursePage coursePage = createCoursePopup.create(courseMap);
+		Course course = createCoursePopup.create(courseMap);
 
 		// When
 		subMenu = home.clickMenu("Courses");
