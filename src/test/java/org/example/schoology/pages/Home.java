@@ -1,15 +1,9 @@
 package org.example.schoology.pages;
 
+import org.example.schoology.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class Home {
-
-	private WebDriver driver;
-
-	public Home(WebDriver driver) {
-		this.driver = driver;
-	}
+public class Home extends AbstractPage {
 
 	/**
 	 * This only works for Courses and Groups
@@ -19,7 +13,12 @@ public class Home {
 	 */
 	public SubMenu clickMenu(String menuName) {
 		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
-		return new SubMenu(driver);
+		return new SubMenu();
+	}
+
+	public Resources clickMenuResources(String menuName) {
+		driver.findElement(By.xpath(String.format("//a[text()='%s']", menuName))).click();
+		return new Resources();
 	}
 
 }

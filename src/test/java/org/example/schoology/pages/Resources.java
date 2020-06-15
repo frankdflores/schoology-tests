@@ -1,17 +1,12 @@
 package org.example.schoology.pages;
 
+import org.example.schoology.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Resources {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class Resources extends AbstractPage {
 
     public static final String QUESTION_ADD_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@class='action-links-unfold ']";
     public static final String QUESTION_ACTIONS_BUTTON = "//a[text()='%s']/following::div[@class='action-links-unfold ']";
@@ -27,12 +22,6 @@ public class Resources {
     @FindBy(css = "#library-wrapper div.messages-container")
     private WebElement messageContainer;
 
-    public Resources(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver,this);
-    }
-
     public CreateQuestionBankPopup clickAddResourcesBtn(String resourceOption) {
         WebElement addResourceButton = driver.findElement(By.xpath(QUESTION_ADD_ACTIONS_BUTTON));
         addResourceButton.click();
@@ -42,7 +31,7 @@ public class Resources {
                 addQuestionBankOption.click();
                 break;
         }
-        return new CreateQuestionBankPopup(driver);
+        return new CreateQuestionBankPopup();
     }
 
     public DeleteQuestionBank clickDeleteQuestion(String questionName) {
@@ -51,7 +40,7 @@ public class Resources {
 
         questionActionsButton.click();
         deleteQuestion.click();
-        return new DeleteQuestionBank(driver);
+        return new DeleteQuestionBank();
     }
 
     public String getMessage() {

@@ -1,16 +1,14 @@
 package org.example.schoology.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.example.schoology.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractCoursePopup {
+public class AbstractCoursePopup extends AbstractPage {
     @FindBy(css = "#edit-course-name")
     private WebElement courseNameTextField;
 
@@ -25,15 +23,6 @@ public class AbstractCoursePopup {
 
     @FindBy(css = "#edit-submit")
     protected WebElement submitButton;
-
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    public AbstractCoursePopup(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver,this);
-    }
 
     public void fill(Map<String, String> courseMap) {
         Map<String, Step>  stepsMap = new HashMap<>();

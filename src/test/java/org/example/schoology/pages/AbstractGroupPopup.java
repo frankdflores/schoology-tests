@@ -1,16 +1,14 @@
 package org.example.schoology.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.example.schoology.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractGroupPopup {
+public abstract class AbstractGroupPopup extends AbstractPage {
     @FindBy(css = "#edit-name")
     private WebElement groupNameTextField;
 
@@ -32,15 +30,6 @@ public abstract class AbstractGroupPopup {
     @FindBy(css = "#edit-group-code")
     private WebElement codeTextField;
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    public AbstractGroupPopup(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver,this);
-    }
-
     public void fill(Map<String, String> groupMap) {
         Map<String, Step>  stepsMap = new HashMap<>();
         stepsMap.put("name", () -> setName(groupMap.get("name")));
@@ -53,7 +42,6 @@ public abstract class AbstractGroupPopup {
         for(String keyField : groupMap.keySet()){
             stepsMap.get(keyField).execute();
         }
-
     }
 
     private void setName(String name) {
