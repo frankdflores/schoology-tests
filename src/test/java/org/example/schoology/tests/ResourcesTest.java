@@ -17,24 +17,24 @@ public class ResourcesTest {
 
     @Test
     public void DeleteQuestionBankResource() {
-        Login login = new Login();
-        Home home = login.loginAs("ovando.noni@gmail.com", "Testnovando123E@");
-        Resources resources = home.clickResourceMenu("Resources");
-        CreateQuestionBankPopup createResourceQuestionPopup = resources.clickCreateQuestionBankButton();
+     //   Login login = new Login();
+     //   Home home = login.loginAs("ovando.noni@gmail.com", "Testnovando123E@");
+     //   Resources resources = home.clickResourceMenu("Resources");
+    //    CreateQuestionBankPopup createResourceQuestionPopup = resources.clickCreateQuestionBankButton();
 
-        String resourceQuestionName = PREFIX_AT + "Resource Question" + System.currentTimeMillis();
+    //    String resourceQuestionName = PREFIX_AT + "Resource Question" + System.currentTimeMillis();
 
-        Map<String, String> resourceQuestionMap = new HashMap<>();
-        resourceQuestionMap.put("name", resourceQuestionName);
-        resourceQuestionMap.put("description", "This is a description");
-        resourceQuestionMap.put("tracking", "True");
-        resources = createResourceQuestionPopup.CreateQuestionBank(resourceQuestionMap);
+    //    Map<String, String> resourceQuestionMap = new HashMap<>();
+    //    resourceQuestionMap.put("name", resourceQuestionName);
+    //    resourceQuestionMap.put("description", "This is a description");
+    //    resourceQuestionMap.put("tracking", "True");
+    //    resources = createResourceQuestionPopup.CreateQuestionBank(resourceQuestionMap);
 
         // When
-         resources.clickDeleteQuestionBankButton(resourceQuestionName);
+    //     resources.clickDeleteQuestionBankButton(resourceQuestionName);
 
-        Assert.assertEquals(false, resources.existResourceQuestionByName(resourceQuestionName));
-        //Assert.assertEquals("Your item has been removed.", resources.getMessage());
+    //    Assert.assertEquals(false, resources.existResourceQuestionByName(resourceQuestionName));
+        //Assert.assertEquals("Your item has been removed.", resources.getDeleteMessage());
 
     }
 

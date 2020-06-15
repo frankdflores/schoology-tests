@@ -12,7 +12,7 @@ public class GroupsTest {
         Login login = new Login();
         Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
         SubMenu subMenu = home.clickMenu("Groups");
-        Groups groups = subMenu.clickGroupsLink();
+        Groups groups = subMenu.clickMyGroupsLink();
         CreateGroupPopup createGroupPopup = groups.clickCreateGroupButton();
         //Course course = new Course();
         String groupName = "Test Group";
@@ -23,7 +23,7 @@ public class GroupsTest {
         groupMap.put("privacy", "Group");
         groupMap.put("access", "Open");
         groupMap.put("category", "Career Groups");
-        home = createGroupPopup.create(groupMap);
+        //home = createGroupPopup.create(groupMap);
         //https://app.schoology.com/group/2561240275
         //subMenu = home.clickMenu("Groups");
         //groups = subMenu.clickGroupLink();
