@@ -15,7 +15,7 @@ public class CoursesTest {
 	public void editCourseTest() {
 		// Given
 		Login login = new Login();
-		Home home = login.loginAs("LYNX_LEXX@hotmail.com", "TheTop86!");
+		Home home = login.loginAs("magnethus01@gmail.com", "TheTop86!");
 		SubMenu subMenu = home.clickMenu("Courses");
 		Courses courses = subMenu.clickMyCoursesLink();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();

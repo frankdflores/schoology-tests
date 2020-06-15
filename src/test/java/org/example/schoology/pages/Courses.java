@@ -11,6 +11,7 @@ public class Courses {
 
 	public static final String COURSE_ACTIONS_BUTTON = "//span[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
 	public static final String XPATH_SECTION_BY_NAME = "//span[text()='%s']/parent::p/parent::li//a[@class=\"sExtlink-processed\"]";
+
 	private WebDriver driver;
 
 	@FindBy(css = "a.create-course-btn" )

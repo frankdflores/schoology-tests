@@ -10,6 +10,9 @@ public class Groups {
 
     public static final String GROUP_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
     public static final String GROUP_ACTION_EDIT_GROUP_BUTTON = "//a[text()='%s']/ancestor::li//li[@class='action-edit']";
+
+    private static final String XPATH_RESOURCE_BY_NAME = ("//a[text()='%s']");
+
     private WebDriver driver;
 
     @FindBy(css = "a.create-group" )
@@ -39,4 +42,7 @@ public class Groups {
         return messages.getText();
     }
 
+    public String getGroupByName(String groupName){
+        return driver.findElement(By.xpath(String.format(XPATH_RESOURCE_BY_NAME, groupName))).getText();
+    }
 }

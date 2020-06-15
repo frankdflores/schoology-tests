@@ -39,7 +39,7 @@ public class GroupsTest {
         groupMap = new HashMap<>();
         groupMap.put("name", groupName);
         groupMap.put("description", "Descriptiond");
-        groupMap.put("code", "testcode02Edit");
+        groupMap.put("code", "testcode04Edit");
         groupMap.put("privacy", "No One");
         groupMap.put("access", "Allow Requests");
         groupMap.put("category", "Faculty Groups");
@@ -48,7 +48,7 @@ public class GroupsTest {
 
         //then
         Assert.assertEquals(groupName + " has been saved.", groups.getMessage());
-
+        Assert.assertEquals(groupMap.get("name"), groups.getGroupByName(groupName));
         //home.clickMenu("Groups");
         //subMenu.clickMyGroupsLink();
     }

@@ -24,7 +24,6 @@ public class ResourcesTest {
         resourceMap.put("description", "Description01");
         resources = addQuestionPopup.create(resourceMap);
 
-
         //When
         resources.clickDeleteResource(resourceName);
 
