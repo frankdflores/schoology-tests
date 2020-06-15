@@ -1,19 +1,17 @@
 package org.example.schoology.pages;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Map;
 
+
 public class CreateGroupPopup extends AbstractGroupPopup{
 
-    public CreateGroupPopup(WebDriver driver) {
-        super(driver);
-    }
-
-    public GroupPage create(Map<String, String> groupMap){
+    public Group fillInTheFieldsAndCreate(Map<String, String> groupMap) {
         fill(groupMap);
         submitButton.click();
-        return new GroupPage(driver);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".form-submit")));
+        return new Group();
     }
-
 }
