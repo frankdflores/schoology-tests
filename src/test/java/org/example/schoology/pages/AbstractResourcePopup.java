@@ -39,19 +39,22 @@ public abstract class AbstractResourcePopup {
         questionBankDescriptionTextField.sendKeys(description);
     }
 
-    public void fill(Map<String, String> resourceMap, String enableQuestionTracking) {
+    public void fill(Map<String, String> resourceMap) {
         Map<String, Step> stepsMap = new HashMap<>();
         stepsMap.put("name", () -> setName(resourceMap.get("name")));
         stepsMap.put("description", () -> setDescription(resourceMap.get("description")));
+        stepsMap.put("enableQuestionTracking", () -> setEnableQuestionTracking(resourceMap.get("enableQuestionTracking")));
 
+        for (String keyField : resourceMap.keySet()) {
+            stepsMap.get(keyField).execute();
+        }
+    }
+
+    private void setEnableQuestionTracking(String enableQuestionTracking) {
         switch(enableQuestionTracking) {
             case "True":
                 questionBankEnableTrackingCheckBox.click();
                 break;
-        }
-
-        for (String keyField : resourceMap.keySet()) {
-            stepsMap.get(keyField).execute();
         }
     }
 }

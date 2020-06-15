@@ -7,17 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.SharedDriver;
-import org.example.schoology.pages.Course;
-import org.example.schoology.pages.Courses;
-import org.example.schoology.pages.CreateCoursePopup;
-import org.example.schoology.pages.EditCoursePopup;
-import org.example.schoology.pages.Group;
-import org.example.schoology.pages.Groups;
-import org.example.schoology.pages.Home;
-import org.example.schoology.pages.Login;
-import org.example.schoology.pages.CreateGroupPopup;
-import org.example.schoology.pages.EditGroupPopup;
-import org.example.schoology.pages.SubMenu;
+import org.example.schoology.pages.*;
 import org.junit.Assert;
 
 public class MyStepdefs {
@@ -30,6 +20,8 @@ public class MyStepdefs {
 
 	private Groups groups;
 
+	private Resources resources;
+
 	public MyStepdefs(SharedDriver sharedDriver) {
 
 	}
@@ -37,7 +29,7 @@ public class MyStepdefs {
 	@Given("I log in as {string} user")
 	public void iLogInAsUser(String account) {
 		Login login = new Login();
-		home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
+		home = login.loginAs("mixmeil@gmail.com", "Control123");
 	}
 
 	@And("I create a course with:")
@@ -99,6 +91,32 @@ public class MyStepdefs {
 		Assert.assertEquals(groupName, groups.getGroupByName(groupName));
 
 	}
+	
+	@And("I create a {string} resource with:")
+	public void iCreateAResourceWith(String resourceName, Map<String, String> datatable) {
+		resources = home.clickResourcesMenuOption();
+		AddResourcePopup addResourcePopup = resources.clickAddResource(resourceName);
+		resources = addResourcePopup.AddResource(datatable);
+	}
 
+	@And("I should not see a resource with {string}")
+	public void iShouldNotSeeAResourceWith(String name) {
+		Assert.assertFalse(resources.resourceItemExist(name));
+	}
 
+	@When("I remove a resource with name {string}")
+	public void iRemoveAResourceWithName(String name) {
+		DeleteResourcePopup deleteResourcePopup = resources.clickRemoveResource(name);
+		resources = deleteResourcePopup.clickDeleteButton();
+	}
+
+	@And("I wait for message disappear")
+	public void iWaitForMessageDisappear() {
+		resources.waitForMessageContainerDisappear();
+	}
+
+	@Then("I should see message {string}")
+	public void iShouldSeeMessage(String message) {
+		Assert.assertEquals(message, resources.getMessage());
+	}
 }

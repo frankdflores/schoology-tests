@@ -34,7 +34,8 @@ public abstract class AbstractGroupPopup extends AbstractPage {
     @FindBy(css = "#edit-submit")
     protected WebElement submitButton;
 
-    public void fill(Map<String, String> groupMap) {
+    public void
+    fill(Map<String, String> groupMap) {
         Map<String, Step> stepMap = new HashMap<>();
         stepMap.put("name", () -> setName(groupMap.get("name")));
         stepMap.put("description", () -> setDescription(groupMap.get("description")));

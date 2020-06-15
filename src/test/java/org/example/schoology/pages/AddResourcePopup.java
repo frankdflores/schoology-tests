@@ -10,8 +10,8 @@ public class AddResourcePopup extends AbstractResourcePopup {
         super(driver);
     }
 
-    public Resources AddResource(Map<String, String> resourceMap, String enableQuestionTracking) {
-        fill(resourceMap, enableQuestionTracking);
+    public Resources AddResource(Map<String, String> resourceMap) {
+        fill(resourceMap);
         submitButton.click();
         return new Resources(driver);
     }

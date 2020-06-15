@@ -1,3 +1,4 @@
+/*
 package org.example.schoology.tests;
 
 
@@ -30,7 +31,9 @@ public class GroupsTest {
 
         Map<String, String> groupMap = new HashMap<>();
 
-        /*Attempt 01*/
+        */
+/*Attempt 01*//*
+
         groupMap.put("name", groupName);
         groupMap.put("description", "MT - This is a Description Text, only for testing purposes");
         groupMap.put("privacy", "School");
@@ -38,15 +41,23 @@ public class GroupsTest {
         groupMap.put("category", "General");
 
 
-        /*Attempt 02*/
-        /*groupMap.put("name","MT - Test Group");
+        */
+/*Attempt 02*//*
+
+        */
+/*groupMap.put("name","MT - Test Group");
         groupMap.put("description", "MT - This is a Description Text, only for testing purposes");
         groupMap.put("privacy", "No One");
-        groupMap.put("access", "Open");*/
+        groupMap.put("access", "Open");*//*
 
-        /*Attempt 03*/
-        /*groupMap.put("name","MT - Test Group");
-        groupMap.put("description", "Nothing to see here");*/
+
+        */
+/*Attempt 03*//*
+
+        */
+/*groupMap.put("name","MT - Test Group");
+        groupMap.put("description", "Nothing to see here");*//*
+
         GroupPage groupPage = createGroupPopup.create(groupMap);
 
         //When
@@ -71,3 +82,4 @@ public class GroupsTest {
     }
 
 }
+*/

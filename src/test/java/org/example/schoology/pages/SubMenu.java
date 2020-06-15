@@ -24,9 +24,9 @@ public class SubMenu extends AbstractPage {
 		return new Groups();
 	}
 
-	public Groups clickMyGroupsLink(){
+	/*public Groups clickMyGroupsLink(){
 		driver.findElement(By.cssSelector("a[href='/groups']")).click();
 		return new Groups(driver);
-	}
+	}*/
 
 }

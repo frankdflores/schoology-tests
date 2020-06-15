@@ -1,3 +1,4 @@
+/*
 package org.example.schoology.tests;
 
 import java.util.HashMap;
@@ -55,3 +56,4 @@ public class CoursesTest {
 	}
 
 }
+*/

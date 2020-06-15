@@ -1,4 +1,4 @@
-package org.example.schoology.tests;
+/*package org.example.schoology.tests;
 
 import org.example.schoology.pages.*;
 import org.junit.Assert;
@@ -42,4 +42,4 @@ public class  ResourcesTest {
 
     }
 
-}
+}*/
