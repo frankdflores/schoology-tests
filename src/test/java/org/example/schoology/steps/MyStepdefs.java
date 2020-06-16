@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.SharedDriver;
 import org.example.schoology.pages.*;
 import org.junit.Assert;
 
@@ -22,6 +23,12 @@ public class MyStepdefs {
 
     private Resources resources;
     private AddQuestionPopup addQuestionPopup;
+
+    public MyStepdefs(SharedDriver sharedDriver){
+
+    }
+
+
 
     @Given("I log in as {string} user")
     public void iLogInAsUser(String account) {

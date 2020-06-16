@@ -8,27 +8,20 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SubMenu {
 
-	private WebDriver driver;
-
 	@FindBy(css = "a[href='/courses']")
 	private WebElement coursesLink;
 
 	@FindBy(css = "a[href='/groups']")
 	private WebElement groupsLink;
 
-	public SubMenu(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
-
 	public Courses clickMyCoursesLink() {
 		coursesLink.click();
-		return new Courses(driver);
+		return new Courses();
 	}
 
 	public Groups clickMyGroupsLink() {
 		groupsLink.click();
-		return new Groups(driver);
+		return new Groups();
 	}
 
 

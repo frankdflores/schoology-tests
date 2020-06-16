@@ -6,13 +6,9 @@ import java.util.Map;
 
 public class EditCoursePopup extends AbstractCoursePopup {
 
-	public EditCoursePopup(WebDriver driver) {
-		super(driver);
-	}
-
 	public Courses edit(Map<String, String> courseMap){
 		fill(courseMap);
 		submitButton.click();
-		return new Courses(driver);
+		return new Courses();
 	}
 }

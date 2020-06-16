@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.example.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,9 +32,6 @@ public class Login {
 	private WebElement cancelVerifyYourAccountButton;
 
 	public Login() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
 		driver.get("https://app.schoology.com/login");
 		PageFactory.initElements(driver, this);
 	}
@@ -43,7 +41,7 @@ public class Login {
 		passwordTextField.sendKeys(password);
 		loginButton.click();
 		//verifyYourAccount();
-		return new Home(driver);
+		return new Home();
 	}
 
 //	public void verifyYourAccount(){

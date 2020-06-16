@@ -12,7 +12,7 @@ Feature: Groups
     And I edit the "FirstGroup" "group" with:
       | name | FirstGroupEdited |
       | description | Description01Edited |
-      | code | CodeEdited02 |
+      | code | CodeEdited04 |
       | privacy | No One |
       | access | Allow Requests |
       | category | Faculty Groups |

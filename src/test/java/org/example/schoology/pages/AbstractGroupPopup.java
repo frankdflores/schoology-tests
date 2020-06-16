@@ -1,5 +1,6 @@
 package org.example.schoology.pages;
 
+import org.example.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractGroupPopup {
+public class AbstractGroupPopup extends AbstractPage {
 
     @FindBy(css = "#edit-name")
     private WebElement groupNameTextField;
@@ -32,15 +33,6 @@ public class AbstractGroupPopup {
 
     @FindBy(css = "#edit-submit")
     protected WebElement submitButton;
-
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    public AbstractGroupPopup(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver, this);
-    }
 
     public void fill(Map<String, String> groupMap){
         Map<String, Step> stepsMap = new HashMap<>();

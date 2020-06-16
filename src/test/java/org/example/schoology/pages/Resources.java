@@ -1,19 +1,13 @@
 package org.example.schoology.pages;
 
+import org.example.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
-public class Resources {
-    private WebDriver driver;
-    protected WebDriverWait wait;
+public class Resources extends AbstractPage {
 
     @FindBy (xpath = "//img[@class='action-links-unfold-icon']//ancestor::div[@id='toolbar-add-wrapper']")
     private WebElement addResourceButton;
@@ -35,16 +29,10 @@ public class Resources {
     public static final String DELETE_RESOURCE_ACTION_BUTTON = "//a[text()='%s']/ancestor::tr//ul//li[contains(@class,'action-delete')]";
 
 
-    public Resources(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        this.wait = new WebDriverWait(driver, 30);
-    }
-
     public AddQuestionPopup clickAddResources(){
         addResourceButton.click();
         addQuestionBankButton.click();
-        return new AddQuestionPopup(driver);
+        return new AddQuestionPopup();
     }
 
     public Resources clickDeleteResource(String resourceName){
@@ -54,7 +42,7 @@ public class Resources {
         wait.until(ExpectedConditions.visibilityOfElementLocated(deletePopUp));
         deleteButton.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".messages .message-text")));
-        return new Resources(driver);
+        return new Resources();
     }
 
     public String getMessage(){

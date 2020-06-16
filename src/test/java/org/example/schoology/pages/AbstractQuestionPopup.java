@@ -1,5 +1,6 @@
 package org.example.schoology.pages;
 
+import org.example.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractQuestionPopup {
+public class AbstractQuestionPopup extends AbstractPage {
 
     @FindBy(css="#edit-title")
     private WebElement groupNameTextField;
@@ -21,13 +22,6 @@ public class AbstractQuestionPopup {
 
     @FindBy(css="input[value='Create']")
     protected WebElement submitButton;
-
-    protected WebDriver driver;
-
-    public AbstractQuestionPopup(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
 
     public void fill(Map<String, String> questionMap){
         Map<String, Step> stepsMap = new HashMap<>();
