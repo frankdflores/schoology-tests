@@ -3,6 +3,7 @@ package org.example.schoology.tests;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.example.SharedDriver;
 import org.example.schoology.pages.Course;
 import org.example.schoology.pages.Courses;
 import org.example.schoology.pages.CreateCoursePopup;
@@ -10,8 +11,8 @@ import org.example.schoology.pages.EditCoursePopup;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class CoursesTest {
 
@@ -19,6 +20,8 @@ public class CoursesTest {
 
 	@Test
 	public void editCourseTest() {
+		new SharedDriver();
+
 		// Given
 		Login login = new Login();
 		Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");

@@ -8,7 +8,7 @@ import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
 import org.example.schoology.pages.ViewList;
-import org.junit.Assert;
+import org.testng.Assert;
 
 public class CommonStepDefs {
 

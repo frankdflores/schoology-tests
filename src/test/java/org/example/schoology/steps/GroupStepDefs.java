@@ -11,7 +11,7 @@ import org.example.schoology.pages.Group;
 import org.example.schoology.pages.Groups;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.SubMenu;
-import org.junit.Assert;
+import org.testng.Assert;
 
 public class GroupStepDefs {
 
