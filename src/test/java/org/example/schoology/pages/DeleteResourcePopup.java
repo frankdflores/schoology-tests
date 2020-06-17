@@ -12,8 +12,6 @@ public class DeleteResourcePopup {
     @FindBy(css = "input[value='Delete']")
     private WebElement deleteButton;
 
-
-
     public DeleteResourcePopup(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -21,7 +19,7 @@ public class DeleteResourcePopup {
 
     public Resources clickDeleteButton(){
         deleteButton.click();
-        return new Resources(driver);
+        return new Resources();
     }
 
 }

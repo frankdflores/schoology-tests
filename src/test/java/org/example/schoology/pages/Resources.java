@@ -1,15 +1,13 @@
 package org.example.schoology.pages;
 
+import org.example.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Resources {
+public class Resources extends AbstractPage {
     public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@class='action-links-unfold ']";
     public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/following::div[@class='action-links-unfold ']";
     public static final String RESOURCE_ACTIONS_DELETE_OPTION = "//a[text()='%s']/following::a[@class='action-delete  sExtlink-processed popups-processed']";
@@ -26,16 +24,6 @@ public class Resources {
     private WebElement messageContainer;
 
 
-
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    public Resources(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver, this);
-    }
-
     public AddResourcePopup clickAddResource (String resourceOption){
         WebElement addResourceButton = driver.findElement(By.xpath(ADD_RESOURCE_ACTIONS_BUTTON));
         addResourceButton.click();
@@ -45,7 +33,7 @@ public class Resources {
                 addQuestionBankOption.click();
                 break;
         }
-        return new AddResourcePopup(driver);
+        return new AddResourcePopup();
     }
 
     public DeleteResourcePopup clickRemoveResource(String resourceName){
@@ -76,7 +64,6 @@ public class Resources {
     }
 
     public void waitForMessageContainerDisappear(){
-        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(messageContainer)));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#library-wrapper div.messages-container")));
     }
 

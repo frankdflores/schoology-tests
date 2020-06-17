@@ -1,10 +1,8 @@
 package org.example.schoology.pages;
 
 import org.example.AbstractPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class SubMenu extends AbstractPage {
 
@@ -23,10 +21,5 @@ public class SubMenu extends AbstractPage {
 		myGroupsLink.click();
 		return new Groups();
 	}
-
-	/*public Groups clickMyGroupsLink(){
-		driver.findElement(By.cssSelector("a[href='/groups']")).click();
-		return new Groups(driver);
-	}*/
 
 }

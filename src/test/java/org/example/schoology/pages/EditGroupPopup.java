@@ -1,7 +1,5 @@
 package org.example.schoology.pages;
 
-import org.openqa.selenium.WebDriver;
-
 import java.util.Map;
 
 public class EditGroupPopup extends AbstractGroupPopup {

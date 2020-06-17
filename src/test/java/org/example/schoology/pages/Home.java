@@ -2,11 +2,6 @@ package org.example.schoology.pages;
 
 import org.example.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class Home extends AbstractPage {
 
@@ -23,7 +18,7 @@ public class Home extends AbstractPage {
 
 	public Resources clickResourcesMenuOption(){
 		driver.findElement(By.xpath("//header[@class='_1SIMq _3v0y7 _349XD']/descendant::a[@href='/resources']")).click();
-		return new Resources(driver);
+		return new Resources();
 
 	}
 

@@ -2,13 +2,10 @@ package org.example.schoology.pages;
 
 import java.util.concurrent.TimeUnit;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.example.AbstractPage;
-import org.example.BrowserFactory;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
