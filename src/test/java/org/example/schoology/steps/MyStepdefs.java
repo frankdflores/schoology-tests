@@ -28,8 +28,6 @@ public class MyStepdefs {
 
     }
 
-
-
     @Given("I log in as {string} user")
     public void iLogInAsUser(String account) {
         Login login = new Login();

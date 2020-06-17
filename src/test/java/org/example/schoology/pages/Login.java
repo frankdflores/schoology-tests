@@ -1,23 +1,15 @@
 package org.example.schoology.pages;
 
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.BrowserFactory;
-import org.openqa.selenium.WebDriver;
+import org.example.AbstractPage;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Login {
+public class Login extends AbstractPage {
 
 	//This info should come from config
 	public static final int DEFAULT_IMPLICIT_TIMEOUT = 15;
 	public static final int MIN_IMPLICIT_TIMEOUT = 3;
-
-	private WebDriver driver;
 
 	@FindBy(css = "#edit-mail")
 	private WebElement usernameTextField;

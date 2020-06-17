@@ -2,8 +2,6 @@ package org.example.schoology.pages;
 
 import org.example.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Home extends AbstractPage {
 
