@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Groups extends AbstractPage {
+public class Groups extends ViewList {
 
     public static final String GROUP_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::li//div[@class='action-links-unfold ']";
     public static final String GROUP_ACTION_EDIT_GROUP_BUTTON = "//a[text()='%s']/ancestor::li//li[@class='action-edit']";
@@ -14,9 +14,6 @@ public class Groups extends AbstractPage {
 
     @FindBy(css = "a.create-group" )
     private WebElement createGroupButton;
-
-    @FindBy(css = ".messages .message-text")
-    private WebElement messages;
 
     public CreateGroupPopup clickCreateGroupButton(){
         createGroupButton.click();
@@ -28,10 +25,6 @@ public class Groups extends AbstractPage {
         WebElement actionEdit = driver.findElement(By.xpath(String.format(GROUP_ACTION_EDIT_GROUP_BUTTON, groupName)));
         actionEdit.click();
         return new EditGroupPopup();
-    }
-
-    public String getMessage(){
-        return messages.getText();
     }
 
     public String getGroupByName(String groupName){

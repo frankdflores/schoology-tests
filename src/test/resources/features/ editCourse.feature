@@ -2,13 +2,13 @@ Feature: Courses
 
   Scenario: Edit a course
     Given I log in as "Trainer" user
-    And I create a "course" with:
+    And I create a course with:
       | name | SeleniumWebDriver |
       | section | New Section |
       | area | Mathematics |
       | level | Undergraduate |
     When I navigate to "Courses"
-    And I edit the "SeleniumWebDriver" "course" with:
+    And I edit the "SeleniumWebDriver" course with:
       | name | SeleniumWebDriverEdited |
       | section | New Section01Edited |
       | area | Mathematics |

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Resources extends AbstractPage {
+public class Resources extends ViewList {
 
     @FindBy (xpath = "//img[@class='action-links-unfold-icon']//ancestor::div[@id='toolbar-add-wrapper']")
     private WebElement addResourceButton;
@@ -15,8 +15,6 @@ public class Resources extends AbstractPage {
     @FindBy (css = "#collection-add-question-bank")
     private WebElement addQuestionBankButton;
 
-    @FindBy(css= ".messages .message-text")
-    private WebElement messages;
 
     private final By deletePopUp = By.cssSelector("#popups-1");
 
@@ -43,10 +41,6 @@ public class Resources extends AbstractPage {
         deleteButton.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".messages .message-text")));
         return new Resources();
-    }
-
-    public String getMessage(){
-        return messages.getText();
     }
 
     public boolean getResourceByName(String resourceName){
