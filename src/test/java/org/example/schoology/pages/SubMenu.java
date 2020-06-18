@@ -9,21 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SubMenu extends AbstractPage {
 
-	@FindBy(css = "a[href='/courses']")
-	private WebElement coursesLink;
-
-	@FindBy(css = "a[href='/groups']")
-	private WebElement groupsLink;
-
-	public Courses clickMyCoursesLink() {
-		coursesLink.click();
-		return new Courses();
+	public void clickViewListLink(String menu) {
+		driver.findElement(By.cssSelector(String.format("a[href='/%s']", menu.toLowerCase()))).click();
 	}
-
-	public Groups clickMyGroupsLink() {
-		groupsLink.click();
-		return new Groups();
-	}
-
-
 }

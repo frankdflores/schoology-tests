@@ -32,13 +32,9 @@ public class CommonStepdefs {
 
 
     @When("I navigate to {string}")
-    public void iNavigateToCoursesGroups(String courseGroupsResources) {
-        subMenu = home.clickMenu(courseGroupsResources);
-        if (courseGroupsResources.equals("Courses")){
-            subMenu.clickMyCoursesLink();
-        }else{
-            subMenu.clickMyGroupsLink();
-        }
+    public void iNavigateToCoursesGroups(String menu) {
+        subMenu = home.clickMenu(menu);
+        subMenu.clickViewListLink(menu);
     }
 
     @Then("I should see the {string} message")

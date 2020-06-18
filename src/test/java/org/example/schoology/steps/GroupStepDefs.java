@@ -22,15 +22,17 @@ public class GroupStepDefs {
     private Resources resources;
     private AddQuestionPopup addQuestionPopup;
 
-    public GroupStepDefs(SharedDriver sharedDriver){
+    public GroupStepDefs(SharedDriver sharedDriver, Groups groups){
+        this.groups = groups;
 
     }
 
     @And("I create a group with:")
     public void iCreateAGroupWith(Map<String, String> datatable) {
-        subMenu = new Home().clickMenu("Groups");
-        groups = subMenu.clickMyGroupsLink();
-        CreateGroupPopup createGroupPopup = groups.clickCreateGroupButton();
+        String menu = "Groups";
+        subMenu = new Home().clickMenu(menu);
+        subMenu.clickViewListLink(menu);
+        CreateGroupPopup createGroupPopup = this.groups.clickCreateGroupButton();
         GroupPage groupPage = createGroupPopup.create(datatable);
     }
 

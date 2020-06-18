@@ -1,5 +1,6 @@
 package org.example.schoology.tests;
 
+import org.example.SharedDriver;
 import org.example.schoology.pages.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,11 +14,14 @@ public class CoursesTest {
 
 	@Test
 	public void editCourseTest() {
+		//new SharedDriver();
 		// Given
 		Login login = new Login();
 		Home home = login.loginAs("magnethus01@gmail.com", "TheTop86!");
-		SubMenu subMenu = home.clickMenu("Courses");
-		Courses courses = subMenu.clickMyCoursesLink();
+		String menu = "Courses";
+		SubMenu subMenu = home.clickMenu(menu);
+		subMenu.clickViewListLink(menu);
+		Courses courses = new Courses();
 		CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
 		//Course course = new Course();
 		String courseName = PREFIX_AT + "Test Course009" + System.currentTimeMillis();
@@ -31,8 +35,8 @@ public class CoursesTest {
 
 
 		//When
-		subMenu = home.clickMenu("Courses");
-		courses = subMenu.clickMyCoursesLink();
+		subMenu = home.clickMenu(menu);
+		subMenu.clickViewListLink(menu);
 		EditCoursePopup editCoursePopup = courses.clickEditCourse(courseName);
 		String courseNameEdited = "EditedName";
 

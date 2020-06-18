@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class CourseStepDefs {
 
+    private Home home;
+
     private SubMenu subMenu;
 
     private Courses courses;
@@ -21,15 +23,17 @@ public class CourseStepDefs {
     private Resources resources;
     private AddQuestionPopup addQuestionPopup;
 
-    public CourseStepDefs(SharedDriver sharedDriver){
-
+    public CourseStepDefs(SharedDriver sharedDriver, Home home, Courses courses){
+        this.home = home;
+        this.courses = courses;
     }
 
     @And("I create a course with:")
     public void iCreateACourseWith(Map<String, String> datatable) {
-        subMenu = new Home().clickMenu("Courses");
-        courses = subMenu.clickMyCoursesLink();
-        CreateCoursePopup createCoursePopup = courses.clickCreateCourseButton();
+        String menu = "Courses";
+        subMenu = home.clickMenu(menu);
+        subMenu.clickViewListLink(menu);
+        CreateCoursePopup createCoursePopup = this.courses.clickCreateCourseButton();
         CoursePage coursePage = createCoursePopup.create(datatable);
 
     }

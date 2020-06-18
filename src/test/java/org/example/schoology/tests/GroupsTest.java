@@ -18,9 +18,10 @@ public class GroupsTest {
         Login login = new Login();
         Home home = login.loginAs("LYNX_LEXX@hotmail.com", "TheTop86!");
         //Create Groups with lambda expression and interface on demand
-
-        SubMenu subMenu = home.clickMenu("Groups");
-        Groups groups = subMenu.clickMyGroupsLink();
+        String menu = "Groups";
+        SubMenu subMenu = home.clickMenu(menu);
+        subMenu.clickViewListLink(menu);
+        Groups groups = new Groups();
         CreateGroupPopup createGroupPopup = groups.clickCreateGroupButton();
         String groupName = PREFIX_AT + "Test Group008" + System.currentTimeMillis();
         Map<String, String> groupMap = new HashMap<>();
@@ -33,8 +34,8 @@ public class GroupsTest {
 
 
         //When
-        subMenu = home.clickMenu("Groups");
-        groups = subMenu.clickMyGroupsLink();
+        subMenu = home.clickMenu(menu);
+        subMenu.clickViewListLink(menu);
         EditGroupPopup editGroupPopup = groups.clickEditGroup(groupName);
         groupMap = new HashMap<>();
         groupMap.put("name", groupName);
