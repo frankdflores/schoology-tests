@@ -1,6 +1,7 @@
 package org.example.schoology.pages;
 
 import org.example.AbstractPage;
+import org.example.schoology.pages.resources.Resources;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,6 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Home extends AbstractPage {
+
+	@FindBy(xpath = "//a[@href='/resources' and text()='Resources']")
+	private WebElement resourceMenu;
 
 	/**
 	 * This only works for Courses and Groups
@@ -21,4 +25,8 @@ public class Home extends AbstractPage {
 		return new SubMenu();
 	}
 
+	public Resources clickResources() {
+		resourceMenu.click();
+		return new Resources();
+	}
 }
