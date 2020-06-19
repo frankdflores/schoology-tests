@@ -1,13 +1,11 @@
 package org.example.schoology.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.SharedDriver;
-import org.example.schoology.pages.Home;
-import org.example.schoology.pages.Login;
-import org.example.schoology.pages.SubMenu;
-import org.example.schoology.pages.ViewList;
+import org.example.schoology.pages.*;
 import org.testng.Assert;
 
 public class CommonStepDefs {
@@ -15,6 +13,8 @@ public class CommonStepDefs {
 	private Home home;
 
 	private SubMenu subMenu;
+
+	private Resources resources;
 
 	public CommonStepDefs(SharedDriver sharedDriver) {
 
@@ -37,4 +37,8 @@ public class CommonStepDefs {
 		Assert.assertEquals(message, new ViewList().getMessage());
 	}
 
+	@And("I navigate to Resources")
+	public void iNavigateToResources() {
+		resources = home.clickResources();
+	}
 }

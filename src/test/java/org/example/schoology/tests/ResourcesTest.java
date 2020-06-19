@@ -4,8 +4,9 @@ import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.QuestionBankPopup;
 import org.example.schoology.pages.Resources;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 
 import java.util.HashMap;
 import java.util.Map;

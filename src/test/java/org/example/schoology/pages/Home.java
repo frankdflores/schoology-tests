@@ -21,4 +21,8 @@ public class Home extends AbstractPage {
 		return new SubMenu();
 	}
 
+	public Resources clickResources() {
+		driver.findElement(By.xpath("//header[@class='_1SIMq _3v0y7 _349XD']/descendant::a[@href='/resources']")).click();
+		return new Resources();
+	}
 }

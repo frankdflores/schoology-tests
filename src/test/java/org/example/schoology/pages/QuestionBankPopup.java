@@ -11,10 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuestionBankPopup {
-    private final WebDriver driver;
+public class QuestionBankPopup extends AbstractGroupPopup{
 
-    private final WebDriverWait wait;
 
     @FindBy(css = "#edit-title")
     private WebElement nameField;
@@ -28,13 +26,7 @@ public class QuestionBankPopup {
     @FindBy(css = ".popups-box #edit-submit")
     private WebElement createButton;
 
-    public QuestionBankPopup(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver, this);
-    }
-
-    private void fill(Map<String, String> questionBankMap) {
+    public void fill(Map<String, String> questionBankMap) {
         Map<String, Step> stepMap = new HashMap<>();
         stepMap.put("name", () -> setName(questionBankMap.get("name")));
         stepMap.put("description", () -> setDescription(questionBankMap.get("description")));
@@ -50,7 +42,7 @@ public class QuestionBankPopup {
         fill(questionBank);
         createButton.click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".popup-messages-wrapper>div[style*=\"display: none;\"]")));
-        return new Resources(driver);
+        return new Resources();
     }
 
     public void setName(String name) {
