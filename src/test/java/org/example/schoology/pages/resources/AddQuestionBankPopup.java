@@ -1,14 +1,11 @@
 package org.example.schoology.pages.resources;
 
-import org.example.schoology.pages.Step;
-import org.example.schoology.pages.ViewList;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class AddQuestionBankPopup extends ViewList {
+public class AddQuestionBankPopup extends AbstractQuestionBankPopup {
 
     @FindBy(css = "input#edit-title")
     private WebElement nameTextField;
@@ -29,20 +26,6 @@ public class AddQuestionBankPopup extends ViewList {
         return new Resources();
     }
 
-    private void fillFields(Map<String, String> questionBankValuesMap) {
-        Map<String, Step> stepsMap = new HashMap<>();
-        stepsMap.put("name", () -> setName(questionBankValuesMap.get("name")));
-        stepsMap.put("description", () -> setDescription(questionBankValuesMap.get("description")));
-        //stepsMap.put("enable question Tracking", () -> setEnableQuestionTracking(questionBankValuesMap.get("enable question Tracking")));
-
-        for (Step step : stepsMap.values()) {
-            step.execute();
-        }
-
-//        for (String keyField : questionBankValuesMap.keySet()) {
-//            stepsMap.get(keyField).execute();
-//        }
-    }
 
     public void setName(String name) {
         nameTextField.sendKeys(name);
@@ -52,9 +35,9 @@ public class AddQuestionBankPopup extends ViewList {
         descriptionTextAreaField.sendKeys(description);
     }
 
-    public void setEnableQuestionTracking(String isChecked) {
-//        if (!Boolean.valueOf(isChecked).equals(enableQuestionTrackingCheckboxField.isSelected())) {
-//            enableQuestionTrackingCheckboxField.click();
-//        }
+    public void setEnableQuestionTracking(String condition) {
+        if (Boolean.parseBoolean(condition)) {
+            enableQuestionTrackingCheckboxField.click();
+        }
     }
 }

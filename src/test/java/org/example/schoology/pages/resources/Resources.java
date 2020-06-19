@@ -36,13 +36,18 @@ public class Resources extends ViewList {
         driver.findElement(By.xpath(xpath)).click();
     }
 
+    private void clickOnResourceOption(String resourceOption) {
+        String css = String.format("ul[style='display: block;'] li.action-%s", resourceOption);
+        driver.findElement(By.cssSelector(css)).click();
+    }
+
     public void deleteAction() {
         clickOnResourceOption("delete");
         deleteConfirmationButton.click();
     }
 
-    private void clickOnResourceOption(String resourceOption) {
-        String css = String.format("ul[style=\"display: block;\"] li.action-'%s'", resourceOption);
-        driver.findElement(By.cssSelector(css)).click();
+    public EditFolderPopup editAction() {
+        clickOnResourceOption("edit");
+        return new EditFolderPopup();
     }
 }
