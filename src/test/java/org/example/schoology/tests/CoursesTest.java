@@ -12,9 +12,8 @@ import org.example.schoology.pages.EditCoursePopup;
 import org.example.schoology.pages.Home;
 import org.example.schoology.pages.Login;
 import org.example.schoology.pages.SubMenu;
-import org.example.schoology.steps.MyStepdefs;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class CoursesTest {
 
@@ -22,6 +21,8 @@ public class CoursesTest {
 
 	@Test
 	public void editCourseTest() {
+		new SharedDriver();
+
 		// Given
 		Login login = new Login();
 		Home home = login.loginAs("mixmeil@gmail.com", "Control123");
@@ -38,8 +39,8 @@ public class CoursesTest {
 		Course course = createCoursePopup.create(courseMap);
 
 		// When
-		subMenu = home.clickMenu("Courses");
-		courses = subMenu.clickMyCoursesLink();
+		subMenu = home.clickMenu(menu);
+		subMenu.clickViewListLink(menu);
 		EditCoursePopup editCoursePopup = courses.clickEditCourse(courseName);
 		courseMap = new HashMap<>();
 		courseMap.put("section", "Section Test");

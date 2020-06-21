@@ -28,11 +28,14 @@ public class Login extends AbstractPage {
 	private WebElement cancelVerifyYourAccountButton;
 
 	public Login() {
-		driver.get("https://app.schoology.com/login");
 		PageFactory.initElements(driver, this);
 	}
 
+
+	// Todo
 	public Home loginAs(String username, String password) {
+		driver.manage().deleteAllCookies();
+		driver.get("https://app.schoology.com/login");
 		usernameTextField.sendKeys(username);
 		passwordTextField.sendKeys(password);
 		loginButton.click();
