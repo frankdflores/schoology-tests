@@ -1,7 +1,7 @@
 Feature: Courses
 
   Scenario: Edit a course
-    Given I log in as "Instructor01" user
+    Given I log in as "CourseInstructor01" user
     And I create a course with:
       | name    | SeleniumWebDriver |
       | section | New Section       |
