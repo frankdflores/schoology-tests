@@ -9,7 +9,7 @@ public class GroupsTest {
 
     @Test
     public void editCourse() {
-        Login login = new Login();
+      /*  Login login = new Login();
         Home home = login.loginAs("carledriss+01@gmail.com", "P@ssw0rd");
         SubMenu subMenu = home.clickMenu("Groups");
         Groups groups = subMenu.clickMyGroupsLink();
@@ -27,7 +27,7 @@ public class GroupsTest {
         //https://app.schoology.com/group/2561240275
         //subMenu = home.clickMenu("Groups");
         //groups = subMenu.clickGroupLink();
-
+*/
 
     }
 }

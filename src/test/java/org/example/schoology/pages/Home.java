@@ -10,8 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Home extends AbstractPage {
 
-	@FindBy(xpath = "//a[@href='/resources' and text()='Resources']")
-	private WebElement sub_menu_resources;
+	//@FindBy(xpath = "//a[@href='/resources' and text()='Resources']")
+	//private WebElement sub_menu_resources;
 
 	/**
 	 * This only works for Courses and Groups
@@ -25,9 +25,10 @@ public class Home extends AbstractPage {
 	}
 
 	public Resources clickResourceMenu(String menuName) {
-		sub_menu_resources.click();
+		driver.findElement(By.xpath("//a[@href='/resources' and text()='Resources']")).click();
+		//sub_menu_resources.click();
 
-		return new Resources(driver);
+		return new Resources();
 	}
 
 }

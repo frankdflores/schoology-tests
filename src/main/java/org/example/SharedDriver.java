@@ -6,7 +6,7 @@ public class SharedDriver {
 
 	public SharedDriver() {
 		if (DriverFactory.getDriver() == null) {
-			WebDriver driver = BrowserFactory.getBrowser("chrome");
+			WebDriver driver = BrowserFactory.getBrowser("headless");
 			DriverFactory.addDriver(driver);
 		}
 	}

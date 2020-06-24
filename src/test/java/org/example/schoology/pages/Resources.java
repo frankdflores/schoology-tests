@@ -8,16 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class Resources {
+public class Resources extends ViewList {
 
 
     public static final String EDIT_RESOURCE_QUESTION_ACTIONS_BUTTON = "//a[text()='%s']/ancestor::tr//div[contains(@class, 'action-links-unfold')]";
 
     public static final int DEFAULT_IMPLICIT_TIMEOUT = 15;
     public static final int MIN_IMPLICIT_TIMEOUT = 30;
-
-    private WebDriver driver;
-    private WebDriverWait wait;
 
     @FindBy(xpath = "//span[text()='Add Resources']/parent::div")
     private WebElement addQuestionButton;
@@ -37,21 +34,12 @@ public class Resources {
     @FindBy(xpath = "//input[@value='Delete' and @id='edit-submit']")
     private WebElement deleteResourceQuestionButton;
 
-    @FindBy(css = ".messages .message-text")
-    private WebElement deleteMessages;
-
-    public Resources(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        this.wait = new WebDriverWait(driver, 30);
-
-    }
-
     public CreateQuestionBankPopup clickCreateQuestionBankButton() {
         addQuestionButton.click();
         addQuestionItem.click();
-        return new CreateQuestionBankPopup(driver);
+        return new CreateQuestionBankPopup();
     }
+
 
     public Resources clickDeleteQuestionBankButton(String nameResource) {
 
@@ -60,33 +48,30 @@ public class Resources {
         // Scroll
         //JavascriptExecutor js = (JavascriptExecutor) driver;
         //js.executeScript("arguments[0].scrollIntoView();", editActionsButton);
-
+        wait.until(ExpectedConditions.visibilityOf(editActionsButton));
         editActionsButton.click();
         deleteResourceQuestionItem.click();
         deleteResourceQuestionButton.click();
-        return new Resources(driver);
-    }
-
-    public String getMessage() {
-        return deleteMessages.getText();
-
+        return new Resources();
     }
 
     public boolean existResourceQuestionByName(String nameResource) {
 
-
         try {
-//			// Changing timeout
-            driver.manage().timeouts().implicitlyWait(MIN_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
-            WebElement editActionsButton = driver.findElement(By.xpath(String.format(EDIT_RESOURCE_QUESTION_ACTIONS_BUTTON, nameResource)));
-            return false;
+			WebElement editActionsButton = driver.findElement(By.xpath(String.format(EDIT_RESOURCE_QUESTION_ACTIONS_BUTTON, nameResource)));
+            if(editActionsButton == null)
+                return false;
+            else
+                return true;
         } catch (NoSuchElementException e) {
             // nothing.
-            return true;
+            return false;
         }finally {
 //			// Restore timeout
             driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+            return false;
         }
     }
+
 
 }
