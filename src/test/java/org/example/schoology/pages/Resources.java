@@ -59,11 +59,8 @@ public class Resources extends ViewList {
 
         try {
 			WebElement editActionsButton = driver.findElement(By.xpath(String.format(EDIT_RESOURCE_QUESTION_ACTIONS_BUTTON, nameResource)));
-            if(editActionsButton == null)
-                return false;
-            else
-                return true;
-        } catch (NoSuchElementException e) {
+            return true;
+        } catch (WebDriverException e) {
             // nothing.
             return false;
         }finally {
