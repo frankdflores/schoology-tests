@@ -122,3 +122,5 @@ nb-configuration.xml
 /gradle/
 /build/
 /.gradle/
+
+config.json
