@@ -1,7 +1,7 @@
 Feature: Groups
 
   Scenario: Edit a Group
-    Given I log in as "Trainer" user
+    Given I log in as "Student01" user
     And I create a group with:
       | name | FirstGroup |
       | description | Description01 |
@@ -12,7 +12,7 @@ Feature: Groups
     And I edit the "FirstGroup" group with:
       | name | FirstGroupEdited |
       | description | Description01Edited |
-      | code | CodeEdited08 |
+      | code | CodeEdited10 |
       | privacy | No One |
       | access | Allow Requests |
       | category | Faculty Groups |

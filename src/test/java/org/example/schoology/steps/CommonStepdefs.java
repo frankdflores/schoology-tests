@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.Environment;
 import org.example.SharedDriver;
 import org.example.schoology.pages.*;
 import org.junit.Assert;
@@ -27,7 +28,8 @@ public class CommonStepdefs {
     @Given("I log in as {string} user")
     public void iLogInAsUser(String account) {
         Login login = new Login();
-        home = login.loginAs("magnethus01@gmail.com", "TheTop86!");
+        home = login.loginAs(Environment.getInstance().getValue(String.format("credentials.%s.username", account)),
+                Environment.getInstance().getValue(String.format("credentials.%s.password", account)));
     }
 
 

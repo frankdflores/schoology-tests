@@ -1,7 +1,7 @@
 Feature: Resources
 
   Scenario: Delete a Resource
-    Given I log in as "Trainer" user
+    Given I log in as "Instructor02" user
     And I create a resource with:
      | name | ResourceNameTest04 |
      | description | Description01 |
