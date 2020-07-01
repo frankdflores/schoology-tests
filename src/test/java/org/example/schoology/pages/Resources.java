@@ -17,23 +17,30 @@ public class Resources extends AbstractPage {
     @FindBy(css = "#collection-add-question-bank")
     private WebElement addQuestionBankOption;
 
+    @FindBy(css = "#collection-add-assessment")
+    private WebElement addTestQuizOption;
+
     @FindBy(css = ".messages .message-text")
     private WebElement messages;
 
     @FindBy(css = "#library-wrapper div.messages-container")
     private WebElement messageContainer;
 
-
-    public AddResourcePopup clickAddResource (String resourceOption){
+    public void clickAddResourcesButton(){
         WebElement addResourceButton = driver.findElement(By.xpath(ADD_RESOURCE_ACTIONS_BUTTON));
         addResourceButton.click();
+    }
 
-        switch (resourceOption){
-            case "Add Question Bank":
-                addQuestionBankOption.click();
-                break;
-        }
-        return new AddResourcePopup();
+    public AddQuestionBankResourcePopup clickAddQuestionBankResource(){
+        clickAddResourcesButton();
+        addQuestionBankOption.click();
+        return new AddQuestionBankResourcePopup();
+    }
+
+    public AddTestQuizResourcePopup clickAddTestQuizResource(){
+        clickAddResourcesButton();
+        addTestQuizOption.click();
+        return new AddTestQuizResourcePopup();
     }
 
     public DeleteResourcePopup clickRemoveResource(String resourceName){
@@ -44,7 +51,7 @@ public class Resources extends AbstractPage {
         resourceActionsButton.click();
         resourceActionsDeleteOption.click();
 
-        return new DeleteResourcePopup (driver);
+        return new DeleteResourcePopup ();
 
     }
 

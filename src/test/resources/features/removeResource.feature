@@ -2,7 +2,7 @@ Feature: Resources
 
   Scenario: Remove a resource
     Given I log in as "ResourceInstructor01" user
-    And I create a "Add Question Bank" resource with:
+    And I create an Add Question Bank resource with:
       | name | MT_TestQuestionBank |
       | description | MT-This_is_a_description_text |
       | enableQuestionTracking | True |

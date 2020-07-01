@@ -3,7 +3,6 @@ package org.example.schoology.steps;
 import java.util.Map;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.SharedDriver;
@@ -13,21 +12,21 @@ import org.junit.Assert;
 public class ResourceStepDefs {
 
     private Home home;
-
     private SubMenu subMenu;
-
     private Resources resources;
+    private EditAssessmentQuestions editAssessmentQuestions;
+    private MultipleChoiceQuestion multipleChoiceQuestion;
 
     public ResourceStepDefs(SharedDriver sharedDriver, Resources resources, Home home) {
         this.home = home;
         this.resources = resources;
     }
 
-   @And("I create a {string} resource with:")
-    public void iCreateAResourceWith(String resourceName, Map<String, String> datatable) {
+   @And("I create an Add Question Bank resource with:")
+    public void iCreateAResourceWith(Map<String, String> datatable) {
         resources = home.clickResourcesMenuOption();
-        AddResourcePopup addResourcePopup = resources.clickAddResource(resourceName);
-        resources = addResourcePopup.AddResource(datatable);
+        AddQuestionBankResourcePopup addQuestionBankResourcePopup = resources.clickAddQuestionBankResource();
+        resources = addQuestionBankResourcePopup.AddResource(datatable);
     }
 
     @And("I should not see a resource with {string}")
@@ -49,6 +48,19 @@ public class ResourceStepDefs {
     @Then("I should see message {string}")
     public void iShouldSeeMessage(String message) {
         Assert.assertEquals(message, resources.getMessage());
+    }
+
+    @And("I create an Add Test Quiz resource with:")
+    public void iCreateAnAddTestQuizResourceWith(Map<String, String> datatable) {
+        resources = home.clickResourcesMenuOption();
+        AddTestQuizResourcePopup addTestQuizResourcePopup = resources.clickAddTestQuizResource();
+        editAssessmentQuestions = addTestQuizResourcePopup.AddResource(datatable);
+    }
+
+    @And("I added a multiple choice question with:")
+    public void iAddedAMultipleChoiceQuestionWith(Map<String, String> datatable) {
+        multipleChoiceQuestion = editAssessmentQuestions.clickAddQuestionMultipleChoice();
+        multipleChoiceQuestion.addMultipleChoiceQuestion(datatable);
     }
 }
 

@@ -11,41 +11,70 @@ import java.util.Map;
 public abstract class AbstractResourcePopup extends AbstractPage {
 
     @FindBy(css = "#edit-title")
-    private WebElement questionBankNameTextField;
+    private WebElement addQuestionBankNameTextField;
 
     @FindBy(css = "#edit-description")
-    private WebElement questionBankDescriptionTextField;
+    private WebElement addQuestionBankDescriptionTextField;
 
     @FindBy(css = "#edit-enable-tracking")
-    private WebElement questionBankEnableTrackingCheckBox;
+    private WebElement addQuestionBankEnableTrackingCheckBox;
 
-    @FindBy(css = "input[value='Create'")
-    protected  WebElement submitButton;
+    @FindBy(css = "input[value='Create']")
+    protected  WebElement addQuestionBankSubmitButton;
 
-    public void setName(String name) {
-        questionBankNameTextField.sendKeys(name);
+    @FindBy(css = "#edit-template-fields-title")
+    protected WebElement addTestQuizNameTextField;
+
+    @FindBy(css = "#edit-template-fields-max-points")
+    protected WebElement addTestQuizMaxPointsTextField;
+
+    @FindBy(css = "form#s-library-collection-template-form input#edit-submit")
+    protected WebElement addTestQuizSubmitButton;
+
+
+    public void setNameAddQuestionBank(String name) {
+        addQuestionBankNameTextField.sendKeys(name);
     }
 
-    public void setDescription(String description) {
-        questionBankDescriptionTextField.sendKeys(description);
+    public void setDescriptionAddQuestionBank(String description) {
+        addQuestionBankDescriptionTextField.sendKeys(description);
     }
 
-    public void fill(Map<String, String> resourceMap) {
+    public void fillAddQuestionBankForm(Map<String, String> resourceMap) {
         Map<String, Step> stepsMap = new HashMap<>();
-        stepsMap.put("name", () -> setName(resourceMap.get("name")));
-        stepsMap.put("description", () -> setDescription(resourceMap.get("description")));
-        stepsMap.put("enableQuestionTracking", () -> setEnableQuestionTracking(resourceMap.get("enableQuestionTracking")));
+        stepsMap.put("name", () -> setNameAddQuestionBank(resourceMap.get("name")));
+        stepsMap.put("description", () -> setDescriptionAddQuestionBank(resourceMap.get("description")));
+        stepsMap.put("enableQuestionTracking", () -> setEnableQuestionTrackingAddQuestionBank(resourceMap.get("enableQuestionTracking")));
 
         for (String keyField : resourceMap.keySet()) {
             stepsMap.get(keyField).execute();
         }
     }
 
-    private void setEnableQuestionTracking(String enableQuestionTracking) {
+    private void setEnableQuestionTrackingAddQuestionBank(String enableQuestionTracking) {
         switch(enableQuestionTracking) {
             case "True":
-                questionBankEnableTrackingCheckBox.click();
+                addQuestionBankEnableTrackingCheckBox.click();
                 break;
         }
+    }
+
+    public void fillAddTestQuizForm(Map<String, String> resourceMap) {
+        Map<String, Step> stepsMap = new HashMap<>();
+        stepsMap.put("name", () -> setNameAddTestQuiz(resourceMap.get("name")));
+        stepsMap.put("maxPoints", () -> setMaxPointsAddTestQuiz(resourceMap.get("maxPoints")));
+
+        for (String keyField : resourceMap.keySet()) {
+            stepsMap.get(keyField).execute();
+        }
+    }
+
+    private void setNameAddTestQuiz(String name) {
+        addTestQuizNameTextField.sendKeys(name);
+    }
+
+    private void setMaxPointsAddTestQuiz(String maxPoints) {
+        addTestQuizMaxPointsTextField.clear();
+        addTestQuizMaxPointsTextField.sendKeys(maxPoints);
     }
 }
