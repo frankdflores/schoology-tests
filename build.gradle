@@ -35,6 +35,10 @@ dependencies {
 
 }
 
-    test {
-        useTestNG()
+task runFeatures (type: Test) {
+    useTestNG()
+    options{
+        jvmArgs = ['-Dcucumber.options= -- glue org.example -- plugin pretty']
     }
+    testLogging.showStandardStreams = true
+}
