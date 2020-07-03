@@ -45,11 +45,7 @@ public class AbstractCoursePopup extends AbstractPage {
 	}
 
 	private void setName(String name){
-		WebElement nameField = courseNameTextField;
-		nameField.clear();
-		nameField.sendKeys(name);
-
-		//courseNameTextField.sendKeys(name);
+		courseNameTextField.sendKeys(name);
 	}
 
 	private void setSection(String section){

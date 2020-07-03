@@ -57,9 +57,8 @@ public class AbstractGroupPopup extends AbstractPage {
     //    descriptionTextField.sendKeys(description);
     //}
     private void setName(String name){
-        WebElement groupField = groupNameTextField;
-        groupField.clear();
-        groupField.sendKeys(name);
+        groupNameTextField.clear();
+        groupNameTextField.sendKeys(name);
     }
 
     private void setDescription(String description){
