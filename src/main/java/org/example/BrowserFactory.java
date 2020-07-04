@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class BrowserFactory {
+public final class BrowserFactory {
+
+    private BrowserFactory() {
+    }
 
     private static final Map<String, Supplier<AbstractBrowser>> BROWSERS = new HashMap<>();
     static {
@@ -15,7 +18,7 @@ public class BrowserFactory {
         BROWSERS.put("headless", Headless::new);
     }
 
-    public static WebDriver getBrowser(String browser){
+    public static WebDriver getBrowser(final String browser) {
             return BROWSERS.getOrDefault(browser, Chrome::new).get().init();
     }
 }

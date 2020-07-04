@@ -12,11 +12,12 @@ public class AbstractPage {
     protected WebDriverWait wait;
 
     public static final int DEFAULT_IMPLICIT_TIMEOUT = 15;
+    public static final int EXPLICIT_WAIT_IN_SECONDS = 20;
 
-    public AbstractPage(){
+    public AbstractPage() {
         this.driver = DriverFactory.getDriver();
         driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
-        this.wait = new WebDriverWait(driver, 30);
+        this.wait = new WebDriverWait(driver, EXPLICIT_WAIT_IN_SECONDS);
         PageFactory.initElements(driver, this);
     }
 
