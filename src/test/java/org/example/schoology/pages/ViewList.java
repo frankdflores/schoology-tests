@@ -11,7 +11,7 @@ public class ViewList extends AbstractPage {
 	private WebElement messages;
 
     public String getMessage(){
-		return messages.getText();
+		return action.getText(messages);
 	}
 
 }

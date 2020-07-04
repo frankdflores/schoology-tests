@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.Internationalization;
 import org.example.SharedDriver;
 import org.example.schoology.pages.*;
 import org.junit.Assert;
@@ -30,7 +31,7 @@ public class CourseStepDefs {
 
     @And("I create a course with:")
     public void iCreateACourseWith(Map<String, String> datatable) {
-        String menu = "Courses";
+        String menu = Internationalization.getInstance().getValue("menu");
         subMenu = home.clickMenu(menu);
         subMenu.clickViewListLink(menu);
         CreateCoursePopup createCoursePopup = this.courses.clickCreateCourseButton();
