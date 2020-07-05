@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EditAssessmentQuestions extends AbstractPage {
 
-    @FindBy(css = ".action-links-unfold ")
+    @FindBy(css = "div[class='action-links-unfold ']")
     private WebElement assessmentAddQuestionButton;
 
     @FindBy(css = "a[class='schoology-back-to-resources-link sExtlink-processed']")
@@ -19,7 +19,6 @@ public class EditAssessmentQuestions extends AbstractPage {
 
     public void clickAddQuestionButton(){
         wait.until(ExpectedConditions.elementToBeClickable(assessmentAddQuestionButton));
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".action-links-unfold ")));
         assessmentAddQuestionButton.click();
     }
 
