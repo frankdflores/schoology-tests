@@ -13,12 +13,13 @@ public class Home extends AbstractPage {
 	 * @return
 	 */
 	public SubMenu clickMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//span[text()='%s']/parent::button", menuName))).click();
+		action.click(By.xpath(String.format("//span[text()='%s']/parent::button", menuName)));
 		return new SubMenu();
 	}
 
 	public Resources clickResourcesMenu(String menuName) {
-		driver.findElement(By.xpath(String.format("//a[text()='Resources']", menuName))).click();
+		//driver.findElement(By.xpath(String.format("//a[text()='Resources']", menuName))).click();
+		action.click(By.xpath(String.format("//a[text()='Resources']", menuName)));
 		return new Resources();
 	}
 

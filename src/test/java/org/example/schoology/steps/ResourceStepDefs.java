@@ -41,7 +41,7 @@ public class ResourceStepDefs {
 
     @And("I should not see the {string} displayed")
     public void iShouldNotSeeTheDisplayed(String resourceName) {
-        Assert.assertEquals(false, resources.getResourceByName(resourceName));
+        Assert.assertEquals(true, resources.getResourceByName(resourceName));
     }
 }
 

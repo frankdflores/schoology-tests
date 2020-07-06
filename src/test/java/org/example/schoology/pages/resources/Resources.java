@@ -45,7 +45,8 @@ public class Resources extends ViewList {
 
     public boolean getResourceByName(String resourceName){
         try {
-            return driver.findElement(By.xpath(String.format(XPATH_RESOURCE_BY_NAME, resourceName))).isDisplayed();
+            return action.getStatus(By.xpath(String.format(XPATH_RESOURCE_BY_NAME, resourceName)));
+            //return driver.findElement(By.xpath(String.format(XPATH_RESOURCE_BY_NAME, resourceName))).isDisplayed();
         }catch (NoSuchElementException e){
             return false;
         }
