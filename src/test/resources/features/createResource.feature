@@ -12,5 +12,8 @@ Feature: Creation of Resources on schoology
       | choice_2 | Cat |
       | is_answer | 3 |
       | number_of_options | 3 |
+    Then I comeback to resources page
+    And I should see a resource with name "MT_Quiz Template"
+    And resource "MT_Quiz Template" has the question "What kind of animal is a feline"
 
 

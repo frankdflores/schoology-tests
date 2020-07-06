@@ -2,6 +2,7 @@ package org.example.schoology.pages;
 
 import org.example.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,9 +23,11 @@ public class MultipleChoiceQuestion extends AbstractPage {
     @FindBy(css="#edit-submit")
     private WebElement createQuestionButton;
 
+    @FindBy(css="a[class='schoology-back-to-resources-link sExtlink-processed']")
+    private WebElement backToResourcesLink;
+
 
     public static final String MULTIPLE_CHOICE = "#edit-multiple-choice-choice-%s-text";
-
     public static final String MULTIPLE_CHOICE_IS_ANSWER = "#edit-multiple-choice-choice-%s-is-answer";
 
 
@@ -80,5 +83,8 @@ public class MultipleChoiceQuestion extends AbstractPage {
         createQuestionButton.click();
     }
 
+    public void backToResourcesPage(){
+        backToResourcesLink.click();
+    }
 
 }

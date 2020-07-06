@@ -10,4 +10,4 @@ Feature: Resources
     When I remove a resource with name "MT_TestQuestionBank"
     Then I should see message "Your item has been removed."
     And I wait for message disappear
-    And I should not see a resource with "MT_TestQuestionBank"
+    And I should not see a resource with name "MT_TestQuestionBank"

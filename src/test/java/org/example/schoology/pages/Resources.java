@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import javax.swing.event.UndoableEditEvent;
+
 public class Resources extends AbstractPage {
     public static final String ADD_RESOURCE_ACTIONS_BUTTON = "//div[@id='toolbar-add']/child::div[@class='action-links-unfold ']";
     public static final String RESOURCE_ACTIONS_BUTTON = "//a[text()='%s']/following::div[@class='action-links-unfold ']";
@@ -20,11 +22,15 @@ public class Resources extends AbstractPage {
     @FindBy(css = "#collection-add-assessment")
     private WebElement addTestQuizOption;
 
+    @FindBy(css = "a[class='action-edit-template-assessment-questions sExtlink-processed']")
+    private WebElement editQuestionQuizResource;
+
     @FindBy(css = ".messages .message-text")
     private WebElement messages;
 
     @FindBy(css = "#library-wrapper div.messages-container")
     private WebElement messageContainer;
+
 
     public void clickAddResourcesButton(){
         WebElement addResourceButton = driver.findElement(By.xpath(ADD_RESOURCE_ACTIONS_BUTTON));
@@ -72,6 +78,14 @@ public class Resources extends AbstractPage {
 
     public void waitForMessageContainerDisappear(){
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#library-wrapper div.messages-container")));
+    }
+
+    public EditAssessmentQuestions clickEditQuestionsQuizResource(String resourceName){
+
+        WebElement resourceActionsButton = driver.findElement(By.xpath(String.format(RESOURCE_ACTIONS_BUTTON, resourceName)));
+        resourceActionsButton.click();
+        editQuestionQuizResource.click();
+        return new EditAssessmentQuestions ();
     }
 
 }

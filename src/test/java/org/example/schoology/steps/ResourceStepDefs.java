@@ -29,8 +29,8 @@ public class ResourceStepDefs {
         resources = addQuestionBankResourcePopup.AddResource(datatable);
     }
 
-    @And("I should not see a resource with {string}")
-    public void iShouldNotSeeAResourceWith(String name) {
+    @And("I should not see a resource with name {string}")
+    public void iShouldNotSeeAResourceWithName(String name) {
         Assert.assertFalse(resources.resourceItemExist(name));
     }
 
@@ -61,6 +61,24 @@ public class ResourceStepDefs {
     public void iAddedAMultipleChoiceQuestionWith(Map<String, String> datatable) {
         multipleChoiceQuestion = editAssessmentQuestions.clickAddQuestionMultipleChoice();
         multipleChoiceQuestion.addMultipleChoiceQuestion(datatable);
+    }
+
+
+    @Then("I should see a resource with name {string}")
+    public void iShouldSeeAResourceWithName(String resourceName) {
+        Assert.assertTrue(resources.resourceItemExist(resourceName));
+    }
+
+    @Then("I comeback to resources page")
+    public void iComebackToResourcesPage() {
+        multipleChoiceQuestion.backToResourcesPage();
+    }
+
+    @And("resource {string} has the question {string}")
+    public void resourceHasTheQuestion(String resourceName, String questionName) {
+        resources.clickEditQuestionsQuizResource(resourceName);
+        Assert.assertTrue(editAssessmentQuestions.questionItemExist(questionName));
+
     }
 }
 
