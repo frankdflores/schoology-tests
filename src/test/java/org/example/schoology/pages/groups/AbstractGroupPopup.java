@@ -1,12 +1,10 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.groups;
 
-import org.example.AbstractPage;
-import org.openqa.selenium.WebDriver;
+import org.example.core.ui.AbstractPage;
+import org.example.schoology.pages.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;

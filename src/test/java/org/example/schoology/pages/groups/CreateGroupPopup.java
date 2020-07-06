@@ -1,4 +1,4 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.groups;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;

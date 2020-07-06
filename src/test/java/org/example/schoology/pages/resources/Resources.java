@@ -1,6 +1,6 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.resources;
 
-import org.example.AbstractPage;
+import org.example.schoology.pages.ViewList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;

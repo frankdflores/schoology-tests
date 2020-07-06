@@ -1,17 +1,20 @@
 package org.example.schoology.steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.example.Internationalization;
-import org.example.SharedDriver;
+import org.example.core.Internationalization;
+import org.example.core.ScenarioContext;
+import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.*;
+import org.example.schoology.pages.courses.Courses;
+import org.example.schoology.pages.courses.CreateCoursePopup;
+import org.example.schoology.pages.courses.EditCoursePopup;
 import org.junit.Assert;
 
 import java.util.Map;
 
 public class CourseStepDefs {
+
+    private ScenarioContext context;
 
     private Home home;
 
@@ -19,12 +22,8 @@ public class CourseStepDefs {
 
     private Courses courses;
 
-    private Groups groups;
-
-    private Resources resources;
-    private AddQuestionPopup addQuestionPopup;
-
-    public CourseStepDefs(SharedDriver sharedDriver, Home home, Courses courses){
+    public CourseStepDefs(SharedDriver sharedDriver, final ScenarioContext context, Home home, Courses courses){
+        this.context = context;
         this.home = home;
         this.courses = courses;
     }
@@ -35,8 +34,8 @@ public class CourseStepDefs {
         subMenu = home.clickMenu(menu);
         subMenu.clickViewListLink(menu);
         CreateCoursePopup createCoursePopup = this.courses.clickCreateCourseButton();
-        CoursePage coursePage = createCoursePopup.create(datatable);
-
+        createCoursePopup.create(datatable);
+        context.setContext("CourseKey", datatable.get("name"));
     }
 
     @And("I edit the {string} course with:")

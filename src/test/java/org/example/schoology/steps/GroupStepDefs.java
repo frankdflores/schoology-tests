@@ -1,11 +1,15 @@
 package org.example.schoology.steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.example.SharedDriver;
+import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.*;
+import org.example.schoology.pages.courses.Courses;
+import org.example.schoology.pages.groups.CreateGroupPopup;
+import org.example.schoology.pages.groups.EditGroupPopup;
+import org.example.schoology.pages.groups.GroupPage;
+import org.example.schoology.pages.groups.Groups;
+import org.example.schoology.pages.resources.AddQuestionPopup;
+import org.example.schoology.pages.resources.Resources;
 import org.junit.Assert;
 
 import java.util.Map;

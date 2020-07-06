@@ -1,6 +1,4 @@
-package org.example.schoology.pages;
-
-import org.openqa.selenium.WebDriver;
+package org.example.schoology.pages.courses;
 
 import java.util.Map;
 

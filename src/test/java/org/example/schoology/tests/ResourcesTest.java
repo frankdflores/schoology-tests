@@ -1,6 +1,8 @@
 package org.example.schoology.tests;
 
 import org.example.schoology.pages.*;
+import org.example.schoology.pages.resources.AddQuestionPopup;
+import org.example.schoology.pages.resources.Resources;
 import org.junit.Assert;
 import org.junit.Test;
 

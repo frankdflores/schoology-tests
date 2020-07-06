@@ -1,6 +1,6 @@
 package org.example.schoology.pages;
 
-import org.example.AbstractPage;
+import org.example.core.ui.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

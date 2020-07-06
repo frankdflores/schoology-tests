@@ -1,16 +1,14 @@
 package org.example.schoology.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.Environment;
-import org.example.SharedDriver;
+import org.example.core.Environment;
+import org.example.core.ui.SharedDriver;
 import org.example.schoology.pages.*;
+import org.example.schoology.pages.resources.AddQuestionPopup;
+import org.example.schoology.pages.resources.Resources;
 import org.junit.Assert;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CommonStepdefs {
 

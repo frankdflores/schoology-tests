@@ -1,4 +1,4 @@
-package org.example;
+package org.example.core;
 
 import org.json.simple.JSONObject;
 import com.jayway.jsonpath.DocumentContext;

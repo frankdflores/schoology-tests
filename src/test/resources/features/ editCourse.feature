@@ -1,5 +1,6 @@
 Feature: Courses
 
+  @deleteCourse
   Scenario: Edit a course
     Given I log in as "Instructor01" user
     And I create a course with:

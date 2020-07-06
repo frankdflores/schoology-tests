@@ -1,7 +1,10 @@
 package org.example.schoology.tests;
 
-import org.example.SharedDriver;
 import org.example.schoology.pages.*;
+import org.example.schoology.pages.courses.CoursePage;
+import org.example.schoology.pages.courses.Courses;
+import org.example.schoology.pages.courses.CreateCoursePopup;
+import org.example.schoology.pages.courses.EditCoursePopup;
 import org.junit.Assert;
 import org.junit.Test;
 

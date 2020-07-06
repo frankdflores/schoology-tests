@@ -1,4 +1,4 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.courses;
 
 import java.util.Map;
 

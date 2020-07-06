@@ -1,6 +1,7 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.courses;
 
-import org.example.AbstractPage;
+import org.example.core.ui.AbstractPage;
+import org.example.schoology.pages.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -16,7 +17,7 @@ public class AbstractCoursePopup extends AbstractPage {
     @FindBy(css = "#edit-section-name-1")
 	private WebElement sectionNameTextField;
 
-    @FindBy(css = "#edit-subject-area" )
+    @FindBy(css = "#edit-subject-area")
 	private WebElement subjectAreaDropDown;
 
     @FindBy(css = "#edit-grade-level-range-start")

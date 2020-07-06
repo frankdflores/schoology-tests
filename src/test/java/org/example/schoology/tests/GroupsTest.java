@@ -1,6 +1,10 @@
 package org.example.schoology.tests;
 
 import org.example.schoology.pages.*;
+import org.example.schoology.pages.groups.CreateGroupPopup;
+import org.example.schoology.pages.groups.EditGroupPopup;
+import org.example.schoology.pages.groups.GroupPage;
+import org.example.schoology.pages.groups.Groups;
 import org.junit.Assert;
 import org.junit.Test;
 
