@@ -1,12 +1,13 @@
-package org.example.schoology.pages;
-
-import org.example.AbstractPage;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+package org.example.schoology.pages.groups;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.example.core.ui.AbstractPage;
+import org.example.schoology.pages.Step;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public abstract class AbstractGroupPopup extends AbstractPage {
 
@@ -31,7 +32,7 @@ public abstract class AbstractGroupPopup extends AbstractPage {
     @FindBy(css = "#edit-submit")
     protected WebElement submitButton;
 
-    public void fill(Map<String, String> groupMap) {
+    public void fill(final Map<String, String> groupMap) {
         Map<String, Step> stepMap = new HashMap<>();
         stepMap.put("name", () -> setName(groupMap.get("name")));
         stepMap.put("description", () -> setDescription(groupMap.get("description")));
@@ -40,37 +41,37 @@ public abstract class AbstractGroupPopup extends AbstractPage {
         stepMap.put("access", () -> selectAccess(groupMap.get("access")));
         stepMap.put("category", () -> selectCategory(groupMap.get("category")));
 
-        for (String keyField : groupMap.keySet()) {
+        for (final String keyField : groupMap.keySet()) {
             stepMap.get(keyField).execute();
         }
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         nameField.clear();
         nameField.sendKeys(name);
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         descriptionField.clear();
         descriptionField.sendKeys(description);
     }
 
-    public void setGroupCode(String code) {
+    public void setGroupCode(final String code) {
         groupCodeField.clear();
         groupCodeField.sendKeys(code);
     }
 
-    public void selectPrivacy(String privacy) {
+    public void selectPrivacy(final String privacy) {
         Select selectPrivacy = new Select(privacyField);
         selectPrivacy.selectByVisibleText(privacy);
     }
 
-    public void selectAccess(String access) {
+    public void selectAccess(final String access) {
         Select selectAccess = new Select(accessField);
         selectAccess.selectByVisibleText(access);
     }
 
-    public void selectCategory(String category) {
+    public void selectCategory(final String category) {
         Select selectCategory = new Select(categoryField);
         selectCategory.selectByVisibleText(category);
     }

@@ -1,5 +1,6 @@
 Feature: Courses
 
+  @deleteCourse @softAssert
   Scenario: Edit a course
     Given I log in as "CourseInstructor01" user
     And I create a course with:

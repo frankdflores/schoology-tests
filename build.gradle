@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'checkstyle'
 }
 
 group 'org.example'
@@ -7,6 +8,10 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+checkstyle {
+    toolVersion = '8.23'
 }
 
 dependencies {
@@ -28,9 +33,14 @@ dependencies {
     // https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path
     compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
 
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.13'
 }
 
-
-test {
+task runFeatures (type: Test) {
     useTestNG()
+    options {
+        jvmArgs = ['-Dcucumber.options= -- glue org.example --plugin pretty']
+    }
+    testLogging.showStandardStreams = true
 }
