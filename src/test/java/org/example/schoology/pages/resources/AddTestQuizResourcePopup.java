@@ -1,4 +1,6 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.resources;
+
+import org.example.schoology.pages.EditAssessmentQuestions;
 
 import java.util.Map;
 
@@ -8,9 +10,9 @@ public class AddTestQuizResourcePopup extends AbstractResourcePopup {
         super();
     }
 
-    public EditAssessmentQuestions AddResource(Map<String, String> resourceMap) {
+    public EditAssessmentQuestions addResource(final Map<String, String> resourceMap) {
         fillAddTestQuizForm(resourceMap);
-        addTestQuizSubmitButton.click();
+        action.click(addTestQuizSubmitButton);
         return new EditAssessmentQuestions();
     }
 }

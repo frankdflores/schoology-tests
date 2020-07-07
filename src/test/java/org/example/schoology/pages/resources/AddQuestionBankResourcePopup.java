@@ -1,4 +1,6 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.resources;
+
+import org.example.schoology.pages.Resources;
 
 import java.util.Map;
 
@@ -8,9 +10,9 @@ public class AddQuestionBankResourcePopup extends AbstractResourcePopup {
         super();
     }
 
-    public Resources AddResource(Map<String, String> resourceMap) {
+    public Resources addResource(final Map<String, String> resourceMap) {
         fillAddQuestionBankForm(resourceMap);
-        addQuestionBankSubmitButton.click();
+        action.click(addQuestionBankSubmitButton);
         return new Resources();
     }
 

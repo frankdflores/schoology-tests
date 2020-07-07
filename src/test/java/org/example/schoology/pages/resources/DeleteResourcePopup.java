@@ -1,10 +1,10 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.resources;
 
-import org.example.AbstractPage;
+import org.example.core.ui.AbstractPage;
+import org.example.schoology.pages.Resources;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class DeleteResourcePopup extends AbstractPage {
 
@@ -13,9 +13,8 @@ public class DeleteResourcePopup extends AbstractPage {
     @FindBy(css = "input[value='Delete']")
     private WebElement deleteButton;
 
-    public Resources clickDeleteButton(){
-        deleteButton.click();
+    public Resources clickDeleteButton() {
+        action.click(deleteButton);
         return new Resources();
     }
-
 }

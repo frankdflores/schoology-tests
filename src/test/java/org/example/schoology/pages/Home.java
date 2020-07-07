@@ -12,15 +12,17 @@ public class Home extends AbstractPage {
      * @param menuName {courses or groups}
      * @return {@link SubMenu}
      */
+
+
     public SubMenu clickMenu(final String menuName) {
         action.click(By.xpath(String.format("//span[text()='%s']/parent::button", menuName)));
         return new SubMenu();
     }
 
-	public Resources clickResourcesMenuOption(){
-		driver.findElement(By.xpath("//header[@class='_1SIMq _3v0y7 _349XD']/descendant::a[@href='/resources']")).click();
-		return new Resources();
-
-	}
-
+    public Resources clickResourcesMenuOption() {
+        //action.click(By.xpath("//header[@class='_1SIMq _3v0y7 _349XD']/descendant::a[@href='/resources']"));
+        driver.findElement(By.xpath("//header[@class='_1SIMq _3v0y7 _349XD']/descendant::a"
+                + "[@href='/resources']")).click();
+        return new Resources();
+    }
 }

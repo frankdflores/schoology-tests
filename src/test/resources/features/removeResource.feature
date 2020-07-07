@@ -1,5 +1,6 @@
 Feature: Resources
 
+  @softAssert
   Scenario: Remove a resource
     Given I log in as "ResourceInstructor01" user
     And I create an Add Question Bank resource with:

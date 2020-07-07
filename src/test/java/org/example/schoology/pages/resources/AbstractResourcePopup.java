@@ -1,6 +1,7 @@
-package org.example.schoology.pages;
+package org.example.schoology.pages.resources;
 
-import org.example.AbstractPage;
+import org.example.core.ui.AbstractPage;
+import org.example.schoology.pages.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -32,34 +33,37 @@ public abstract class AbstractResourcePopup extends AbstractPage {
     protected WebElement addTestQuizSubmitButton;
 
 
-    public void setNameAddQuestionBank(String name) {
+    public void setNameAddQuestionBank(final String name) {
         addQuestionBankNameTextField.sendKeys(name);
     }
 
-    public void setDescriptionAddQuestionBank(String description) {
+    public void setDescriptionAddQuestionBank(final String description) {
         addQuestionBankDescriptionTextField.sendKeys(description);
     }
 
-    public void fillAddQuestionBankForm(Map<String, String> resourceMap) {
+    public void fillAddQuestionBankForm(final Map<String, String> resourceMap) {
         Map<String, Step> stepsMap = new HashMap<>();
         stepsMap.put("name", () -> setNameAddQuestionBank(resourceMap.get("name")));
         stepsMap.put("description", () -> setDescriptionAddQuestionBank(resourceMap.get("description")));
-        stepsMap.put("enableQuestionTracking", () -> setEnableQuestionTrackingAddQuestionBank(resourceMap.get("enableQuestionTracking")));
+        stepsMap.put("enableQuestionTracking", () -> setEnableQuestionTrackingAddQuestionBank(resourceMap.get(
+                "enableQuestionTracking")));
 
         for (String keyField : resourceMap.keySet()) {
             stepsMap.get(keyField).execute();
         }
     }
 
-    private void setEnableQuestionTrackingAddQuestionBank(String enableQuestionTracking) {
-        switch(enableQuestionTracking) {
+    private void setEnableQuestionTrackingAddQuestionBank(final String enableQuestionTracking) {
+        switch (enableQuestionTracking) {
             case "True":
                 addQuestionBankEnableTrackingCheckBox.click();
                 break;
+            default:
+                //nothing to do
         }
     }
 
-    public void fillAddTestQuizForm(Map<String, String> resourceMap) {
+    public void fillAddTestQuizForm(final Map<String, String> resourceMap) {
         Map<String, Step> stepsMap = new HashMap<>();
         stepsMap.put("name", () -> setNameAddTestQuiz(resourceMap.get("name")));
         stepsMap.put("maxPoints", () -> setMaxPointsAddTestQuiz(resourceMap.get("maxPoints")));
@@ -69,11 +73,11 @@ public abstract class AbstractResourcePopup extends AbstractPage {
         }
     }
 
-    private void setNameAddTestQuiz(String name) {
+    private void setNameAddTestQuiz(final String name) {
         addTestQuizNameTextField.sendKeys(name);
     }
 
-    private void setMaxPointsAddTestQuiz(String maxPoints) {
+    private void setMaxPointsAddTestQuiz(final String maxPoints) {
         addTestQuizMaxPointsTextField.clear();
         addTestQuizMaxPointsTextField.sendKeys(maxPoints);
     }
