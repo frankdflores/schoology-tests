@@ -16,5 +16,9 @@ public class Home extends AbstractPage {
         action.click(By.xpath(String.format("//span[text()='%s']/parent::button", menuName)));
         return new SubMenu();
     }
+    public Resources clickMenuResource(String resourceName) {
+        driver.findElement(By.xpath(String.format("//a[text()='%s']", resourceName))).click();
 
+        return new Resources(driver);
+    }
 }
