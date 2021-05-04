@@ -1,14 +1,9 @@
 package org.example.schoology.steps;
 
-import java.util.Arrays;
-import java.util.ResourceBundle;
-
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.asserts.Assertion;
-
 import org.example.core.AssertionGroup;
 import org.example.core.Environment;
 import org.example.core.ui.SharedDriver;
@@ -20,6 +15,11 @@ import org.example.schoology.pages.ViewList;
 import org.example.schoology.pages.courses.CourseForm;
 import org.example.schoology.pages.courses.I18NCourse;
 import org.example.schoology.pages.groups.GroupForm;
+import org.example.schoology.pages.resources.PageResourceForm;
+import org.testng.asserts.Assertion;
+
+import java.util.Arrays;
+import java.util.ResourceBundle;
 
 public class CommonStepDefs {
 
@@ -28,11 +28,22 @@ public class CommonStepDefs {
     private Home home;
 
     private ResourceBundle resourceBundle;
+    private ResourceBundle resourceOptionBundle;
 
     public CommonStepDefs(final SharedDriver sharedDriver, final AssertionGroup assertionGroup) {
         assertion = assertionGroup.getAssertion();
         resourceBundle = ResourceBundle.getBundle(Resources.I18N_COURSE,
                 Environment.getInstance().getLocale());
+        resourceOptionBundle = ResourceBundle.getBundle(Resources.I18N_RESOURCE,
+                Environment.getInstance().getLocale());
+    }
+
+    @DataTableType
+    public PageResourceForm pageResourceMap(final String pageResourceFormField) {
+        return Arrays.stream(PageResourceForm.values())
+                .filter(e -> e.getName().equalsIgnoreCase(pageResourceFormField))
+                .findFirst()
+                .orElseThrow();
     }
 
     @DataTableType
@@ -60,7 +71,7 @@ public class CommonStepDefs {
 
     @When("I navigate to {string}")
     public void iNavigateToCourses(final String menu) {
-        SubMenu subMenu = home.clickMenu(resourceBundle.getString(menu.toLowerCase()));
+        SubMenu subMenu = home.clickMenu(menu.toLowerCase());
         // Not put logic
         // for instance: if else, loops read files, handles strings, mathematical operations.
         subMenu.clickViewListLink(menu);
