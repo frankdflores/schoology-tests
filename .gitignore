@@ -32,11 +32,6 @@ build/
 .gradle
 .gradletasknamecache
 gradle-app.setting
-!gradle-wrapper.jar
-gradlew.bat
-gradlew
-gradle
-
 
 ##############################
 ## IntelliJ
